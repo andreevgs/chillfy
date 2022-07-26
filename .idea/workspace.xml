@@ -1,34 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chillfy.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/dto/confirm-email.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/guards/access-token.guard.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/guards/admin-role.guard.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/guards/confirmation.guard.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/guards/refresh-token.guard.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/middlewares/auth.middelware.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/types/login-response.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cli.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/nodemailerconfig.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ormconfig.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/seeds/seeds.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/types/message-response.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/users/dto/login-user.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/users/entities/role.entity.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/users/enums/role.enum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/users/seeds/role.seed.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/users/seeds/user.seed.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/users/types/user-request.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/users/types/user-response.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/users/types/users-response.interface.ts" afterDir="false" />
+    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="create auth and users modules part 2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,8 +109,23 @@
       <workItem from="1658325145631" duration="13791000" />
       <workItem from="1658499185541" duration="4972000" />
       <workItem from="1658682206912" duration="2952000" />
-      <workItem from="1658863225337" duration="1053000" />
+      <workItem from="1658863225337" duration="1902000" />
     </task>
+    <task id="LOCAL-00001" summary="create auth and users modules">
+      <created>1658866697301</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1658866697301</updated>
+    </task>
+    <task id="LOCAL-00002" summary="create auth and users modules part 2">
+      <created>1658867063377</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658867063377</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,5 +141,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="create auth and users modules" />
+    <MESSAGE value="create auth and users modules part 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="create auth and users modules part 2" />
   </component>
 </project>
