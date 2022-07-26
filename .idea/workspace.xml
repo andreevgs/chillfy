@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chillfy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth/dto/confirm-email.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth/guards/access-token.guard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth/guards/admin-role.guard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth/guards/confirmation.guard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth/guards/refresh-token.guard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth/middlewares/auth.middelware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth/types/login-response.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cli.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/nodemailerconfig.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ormconfig.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/seeds/seeds.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/types/message-response.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/users/dto/login-user.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/users/entities/role.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/users/enums/role.enum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/users/seeds/role.seed.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/users/seeds/user.seed.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/users/types/user-request.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/users/types/user-response.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/users/types/users-response.interface.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2BcDPETIIUdPVBkfuZY2wrnB8wL" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/glebandreev/IdeaProjects/chillfy",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Users/glebandreev/IdeaProjects/chillfy/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/users/dto" />
+      <recent name="$PROJECT_DIR$/src/auth" />
+      <recent name="$PROJECT_DIR$/src/users" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/auth/dto" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start:dev">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="db:seed" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="db:seed" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start:dev" />
+        <item itemvalue="npm.db:seed" />
+        <item itemvalue="npm.build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="" />
+      <created>1657196455730</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657196455730</updated>
+      <workItem from="1657196461845" duration="5936000" />
+      <workItem from="1657218086571" duration="3979000" />
+      <workItem from="1657271435902" duration="10191000" />
+      <workItem from="1657454720198" duration="27481000" />
+      <workItem from="1657805629506" duration="6881000" />
+      <workItem from="1658146282294" duration="2705000" />
+      <workItem from="1658150688657" duration="979000" />
+      <workItem from="1658325145631" duration="13791000" />
+      <workItem from="1658499185541" duration="4972000" />
+      <workItem from="1658682206912" duration="2952000" />
+      <workItem from="1658863225337" duration="1053000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
