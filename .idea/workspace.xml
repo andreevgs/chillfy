@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="create auth and users modules part 2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
-    </list>
+    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="change port in main.ts" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +106,7 @@
       <workItem from="1658325145631" duration="13791000" />
       <workItem from="1658499185541" duration="4972000" />
       <workItem from="1658682206912" duration="2952000" />
-      <workItem from="1658863225337" duration="1902000" />
+      <workItem from="1658863225337" duration="2381000" />
     </task>
     <task id="LOCAL-00001" summary="create auth and users modules">
       <created>1658866697301</created>
@@ -125,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658867063377</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="change port in main.ts">
+      <created>1658867996812</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658867996812</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +149,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create auth and users modules" />
     <MESSAGE value="create auth and users modules part 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="create auth and users modules part 2" />
+    <MESSAGE value="change port in main.ts" />
+    <option name="LAST_COMMIT_MESSAGE" value="change port in main.ts" />
   </component>
 </project>
