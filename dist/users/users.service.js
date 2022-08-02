@@ -19,10 +19,12 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const role_enum_1 = require("./enums/role.enum");
 const role_entity_1 = require("./entities/role.entity");
+const contact_request_entity_1 = require("../account/entities/contact-request.entity");
 let UsersService = class UsersService {
-    constructor(dataSource, userRepository, roleRepository) {
+    constructor(dataSource, userRepository, contactRequestRepository, roleRepository) {
         this.dataSource = dataSource;
         this.userRepository = userRepository;
+        this.contactRequestRepository = contactRequestRepository;
         this.roleRepository = roleRepository;
     }
     findCurrent(req) {
@@ -36,11 +38,61 @@ let UsersService = class UsersService {
         newUser.role = userRole;
         return await this.userRepository.save(newUser);
     }
-    async findAll() {
-        return await this.userRepository.find();
+    async findAll(req) {
+        return await this.userRepository.find({
+            where: { id: (0, typeorm_2.Not)(req.user.id) },
+            relations: [
+                'contactRequestFirstUser', 'contactRequestSecondUser'
+            ]
+        });
+    }
+    async findAllContacts(req, users) {
+        const filter = [];
+        users.map(user => {
+            filter.push([
+                { firstUser: { id: user.id }, secondUser: { id: req.user.id } },
+                { secondUser: { id: user.id }, firstUser: { id: req.user.id } },
+            ]);
+        });
+        const contactRequests = await this.contactRequestRepository.find({ where: filter });
+        const filteredUsers = users.map(user => {
+            let contactRequestFirstUser;
+            let contactRequestSecondUser;
+            for (let i = 0; i < contactRequests.length; i++) {
+                for (let j = 0; j < user.contactRequestFirstUser.length; j++) {
+                    if (contactRequests[i].id === user.contactRequestFirstUser[j].id) {
+                        contactRequestFirstUser = contactRequests[i];
+                    }
+                }
+            }
+            for (let i = 0; i < contactRequests.length; i++) {
+                for (let j = 0; j < user.contactRequestSecondUser.length; j++) {
+                    if (contactRequests[i].id === user.contactRequestSecondUser[j].id) {
+                        contactRequestSecondUser = contactRequests[i];
+                    }
+                }
+            }
+            if (contactRequestFirstUser) {
+                user.contactRequestFirstUser = [contactRequestFirstUser];
+            }
+            else {
+                user.contactRequestFirstUser = null;
+            }
+            if (contactRequestSecondUser) {
+                user.contactRequestSecondUser = [contactRequestSecondUser];
+            }
+            else {
+                user.contactRequestSecondUser = null;
+            }
+            return user;
+        });
+        return filteredUsers;
     }
     async findOne(id) {
-        return await this.userRepository.findOne({ where: { id: id }, relations: ['role'] });
+        return await this.userRepository.findOne({
+            where: { id: id },
+            relations: ['role']
+        });
     }
     generateConfirmationCode() {
         return Math.floor(Math.random() * (1000000 - 101010)) + 101010;
@@ -52,11 +104,25 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", user_entity_1.UserEntity)
 ], UsersService.prototype, "findCurrent", null);
+__decorate([
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersService.prototype, "findAll", null);
+__decorate([
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Array]),
+    __metadata("design:returntype", Promise)
+], UsersService.prototype, "findAllContacts", null);
 UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.UserEntity)),
-    __param(2, (0, typeorm_1.InjectRepository)(role_entity_1.RoleEntity)),
+    __param(2, (0, typeorm_1.InjectRepository)(contact_request_entity_1.ContactRequestEntity)),
+    __param(3, (0, typeorm_1.InjectRepository)(role_entity_1.RoleEntity)),
     __metadata("design:paramtypes", [typeorm_2.DataSource,
+        typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository])
 ], UsersService);

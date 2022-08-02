@@ -16,14 +16,15 @@ export class UsersController {
 
   @UseGuards(AccessTokenGuard)
   @Get()
-  async findAll() {
-    const users = await this.usersService.findAll();
-    return { users };
+  async findAll(@Req() req: UserRequestInterface) {
+    const users = await this.usersService.findAll(req);
+    const filteredUsers = await this.usersService.findAllContacts(req, users);
+    return { users: filteredUsers };
   }
 
   @UseGuards(AccessTokenGuard)
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Req() req: UserRequestInterface, @Param('id') id: string) {
     const user = await this.usersService.findOne(+id);
     return { user };
   }

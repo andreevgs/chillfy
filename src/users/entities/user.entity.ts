@@ -11,6 +11,7 @@ import {
 import {hash} from 'bcrypt';
 import {RoleEntity} from "./role.entity";
 import {RefreshTokenEntity} from "../../auth/entities/refresh-token.entity";
+import {ContactRequestEntity} from "../../account/entities/contact-request.entity";
 
 @Entity({name: 'users'})
 export class UserEntity {
@@ -62,6 +63,12 @@ export class UserEntity {
 
     @OneToMany(() => RefreshTokenEntity, refreshToken => refreshToken.user)
     refreshToken: RefreshTokenEntity;
+
+    @OneToMany(() => ContactRequestEntity, contactRequest => contactRequest.firstUser)
+    contactRequestFirstUser: ContactRequestEntity[];
+
+    @OneToMany(() => ContactRequestEntity, contactRequest => contactRequest.secondUser)
+    contactRequestSecondUser: ContactRequestEntity[];
 
     @BeforeInsert()
     async hashPassword() {

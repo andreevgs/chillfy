@@ -9,6 +9,7 @@ import {ConfigModule} from "@nestjs/config";
 import {SeedsModule} from "./shared/seeds/seeds.module";
 import {AuthMiddleware} from "./auth/middlewares/auth.middelware";
 import { EmailingModule } from './emailing/emailing.module';
+import { AccountModule } from './account/account.module';
 
 @Module({
     imports: [
@@ -18,6 +19,7 @@ import { EmailingModule } from './emailing/emailing.module';
         UsersModule,
         AuthModule,
         EmailingModule,
+        AccountModule,
     ],
     controllers: [AppController],
     providers: [AppService],

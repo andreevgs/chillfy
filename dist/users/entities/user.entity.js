@@ -14,6 +14,7 @@ const typeorm_1 = require("typeorm");
 const bcrypt_1 = require("bcrypt");
 const role_entity_1 = require("./role.entity");
 const refresh_token_entity_1 = require("../../auth/entities/refresh-token.entity");
+const contact_request_entity_1 = require("../../account/entities/contact-request.entity");
 let UserEntity = class UserEntity {
     async hashPassword() {
         this.password = await (0, bcrypt_1.hash)(this.password, 10);
@@ -82,6 +83,14 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => refresh_token_entity_1.RefreshTokenEntity, refreshToken => refreshToken.user),
     __metadata("design:type", refresh_token_entity_1.RefreshTokenEntity)
 ], UserEntity.prototype, "refreshToken", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => contact_request_entity_1.ContactRequestEntity, contactRequest => contactRequest.firstUser),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "contactRequestFirstUser", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => contact_request_entity_1.ContactRequestEntity, contactRequest => contactRequest.secondUser),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "contactRequestSecondUser", void 0);
 __decorate([
     (0, typeorm_1.BeforeInsert)(),
     __metadata("design:type", Function),

@@ -7,9 +7,10 @@ import {UserEntity} from "../users/entities/user.entity";
 import {RefreshTokenEntity} from "./entities/refresh-token.entity";
 import {EmailingService} from "../emailing/emailing.service";
 import {RoleEntity} from "../users/entities/role.entity";
+import {ContactRequestEntity} from "../account/entities/contact-request.entity";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity, RoleEntity, RefreshTokenEntity])],
+  imports: [TypeOrmModule.forFeature([UserEntity, RoleEntity, RefreshTokenEntity, ContactRequestEntity])],
   controllers: [AuthController],
   providers: [AuthService, UsersService, EmailingService],
   exports: [AuthService],

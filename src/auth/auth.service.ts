@@ -71,7 +71,6 @@ export class AuthService {
 
     async confirmationCode(confirmEmailDto: ConfirmEmailDto): Promise<MessageResponseInterface> {
         const user = await this.checkUserCredentials(confirmEmailDto);
-        console.log(user, user.confirmationCode, confirmEmailDto.code);
         if(user.confirmationCode !== confirmEmailDto.code){
             throw new HttpException('wrong code', HttpStatus.FORBIDDEN);
         }

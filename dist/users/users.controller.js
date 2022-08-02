@@ -24,11 +24,12 @@ let UsersController = class UsersController {
         const user = this.usersService.findCurrent(req);
         return { user };
     }
-    async findAll() {
-        const users = await this.usersService.findAll();
-        return { users };
+    async findAll(req) {
+        const users = await this.usersService.findAll(req);
+        const filteredUsers = await this.usersService.findAllContacts(req, users);
+        return { users: filteredUsers };
     }
-    async findOne(id) {
+    async findOne(req, id) {
         const user = await this.usersService.findOne(+id);
         return { user };
     }
@@ -44,16 +45,18 @@ __decorate([
 __decorate([
     (0, common_1.UseGuards)(access_token_guard_1.AccessTokenGuard),
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findAll", null);
 __decorate([
     (0, common_1.UseGuards)(access_token_guard_1.AccessTokenGuard),
     (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findOne", null);
 UsersController = __decorate([

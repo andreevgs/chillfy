@@ -18,6 +18,7 @@ const config_1 = require("@nestjs/config");
 const seeds_module_1 = require("./shared/seeds/seeds.module");
 const auth_middelware_1 = require("./auth/middlewares/auth.middelware");
 const emailing_module_1 = require("./emailing/emailing.module");
+const account_module_1 = require("./account/account.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(auth_middelware_1.AuthMiddleware).forRoutes({
@@ -35,6 +36,7 @@ AppModule = __decorate([
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
             emailing_module_1.EmailingModule,
+            account_module_1.AccountModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

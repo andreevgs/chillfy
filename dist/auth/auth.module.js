@@ -16,11 +16,12 @@ const user_entity_1 = require("../users/entities/user.entity");
 const refresh_token_entity_1 = require("./entities/refresh-token.entity");
 const emailing_service_1 = require("../emailing/emailing.service");
 const role_entity_1 = require("../users/entities/role.entity");
+const contact_request_entity_1 = require("../account/entities/contact-request.entity");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.UserEntity, role_entity_1.RoleEntity, refresh_token_entity_1.RefreshTokenEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.UserEntity, role_entity_1.RoleEntity, refresh_token_entity_1.RefreshTokenEntity, contact_request_entity_1.ContactRequestEntity])],
         controllers: [auth_controller_1.AuthController],
         providers: [auth_service_1.AuthService, users_service_1.UsersService, emailing_service_1.EmailingService],
         exports: [auth_service_1.AuthService],

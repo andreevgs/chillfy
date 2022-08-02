@@ -1,5 +1,6 @@
 import { RoleEntity } from "./role.entity";
 import { RefreshTokenEntity } from "../../auth/entities/refresh-token.entity";
+import { ContactRequestEntity } from "../../account/entities/contact-request.entity";
 export declare class UserEntity {
     id: number;
     email: string;
@@ -15,5 +16,7 @@ export declare class UserEntity {
     updatedAt: Date;
     role: RoleEntity;
     refreshToken: RefreshTokenEntity;
+    contactRequestFirstUser: ContactRequestEntity[];
+    contactRequestSecondUser: ContactRequestEntity[];
     hashPassword(): Promise<void>;
 }
