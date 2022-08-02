@@ -71,7 +71,6 @@ let AuthService = class AuthService {
     }
     async confirmationCode(confirmEmailDto) {
         const user = await this.checkUserCredentials(confirmEmailDto);
-        console.log(user, user.confirmationCode, confirmEmailDto.code);
         if (user.confirmationCode !== confirmEmailDto.code) {
             throw new common_1.HttpException('wrong code', common_1.HttpStatus.FORBIDDEN);
         }
