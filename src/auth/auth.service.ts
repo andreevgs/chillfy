@@ -5,12 +5,14 @@ import {DataSource, QueryRunner, Repository} from "typeorm";
 import {LoginUserDto} from "../users/dto/login-user.dto";
 import {LoginResponseInterface} from "./types/login-response.interface";
 import * as jwt from 'jsonwebtoken';
-import {compare} from 'bcrypt';
+import {compare, hash} from 'bcrypt';
 import {v4 as uuidv4} from 'uuid';
 import {RefreshTokenEntity} from "./entities/refresh-token.entity";
 import {UserRequestInterface} from "../users/types/user-request.interface";
 import {MessageResponseInterface} from "../shared/types/message-response.interface";
 import {ConfirmEmailDto} from "./dto/confirm-email.dto";
+import {ConfirmEmailForRestoringDto} from "./dto/confirm-email-for-restoring.dto";
+import {RestoreDto} from "./dto/restore.dto";
 
 @Injectable()
 export class AuthService {
@@ -46,6 +48,30 @@ export class AuthService {
         }
     }
 
+    async createConfirmationCodeForRestoring(
+        confirmEmailForRestoringDto: ConfirmEmailForRestoringDto, code: number
+    ): Promise<MessageResponseInterface> {
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        let responseMessage = '';
+        try {
+            await queryRunner.manager.update(
+                UserEntity,
+                {email: confirmEmailForRestoringDto.email},
+                {confirmationCode: code},
+            );
+            await queryRunner.commitTransaction();
+            responseMessage = 'confirmation code was sent';
+        } catch (error) {
+            await queryRunner.rollbackTransaction();
+            responseMessage = 'error creating confirmation code';
+        } finally {
+            await queryRunner.release();
+        }
+        return {message: responseMessage}
+    }
+
     async createConfirmationCode(loginUserDto: LoginUserDto, code: number): Promise<MessageResponseInterface> {
         const user = await this.checkUserCredentials(loginUserDto);
         const queryRunner = this.dataSource.createQueryRunner();
@@ -71,7 +97,7 @@ export class AuthService {
 
     async confirmationCode(confirmEmailDto: ConfirmEmailDto): Promise<MessageResponseInterface> {
         const user = await this.checkUserCredentials(confirmEmailDto);
-        if(user.confirmationCode !== confirmEmailDto.code){
+        if (user.confirmationCode !== confirmEmailDto.code) {
             throw new HttpException('wrong code', HttpStatus.FORBIDDEN);
         }
 
@@ -115,6 +141,32 @@ export class AuthService {
         } finally {
             await queryRunner.release();
         }
+    }
+
+    async restore(restoreDto: RestoreDto): Promise<MessageResponseInterface> {
+        restoreDto.newPassword = await hash(restoreDto.newPassword, 10);
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        let responseMessage = '';
+        try {
+            const updatedUser = await queryRunner.manager.update(
+                UserEntity,
+                {email: restoreDto.email, confirmationCode: restoreDto.confirmationCode},
+                {password: restoreDto.newPassword},
+            );
+            if(!updatedUser.affected){
+                throw new Error();
+            }
+            await queryRunner.commitTransaction();
+            responseMessage = 'ok';
+        } catch (error) {
+            await queryRunner.rollbackTransaction();
+            responseMessage = 'error during restoring';
+        } finally {
+            await queryRunner.release();
+        }
+        return {message: responseMessage};
     }
 
     async logOut(@Req() req: UserRequestInterface): Promise<MessageResponseInterface> {
@@ -168,7 +220,7 @@ export class AuthService {
             relations: ['user'],
         });
         if (!storedRefreshToken) throw new Error();
-        if(storedRefreshToken.expirationDate.getTime() < new Date().getTime()) throw new Error();
+        if (storedRefreshToken.expirationDate.getTime() < new Date().getTime()) throw new Error();
         return storedRefreshToken.user;
     }
 

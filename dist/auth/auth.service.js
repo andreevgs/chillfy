@@ -49,6 +49,25 @@ let AuthService = class AuthService {
             await queryRunner.release();
         }
     }
+    async createConfirmationCodeForRestoring(confirmEmailForRestoringDto, code) {
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        let responseMessage = '';
+        try {
+            await queryRunner.manager.update(user_entity_1.UserEntity, { email: confirmEmailForRestoringDto.email }, { confirmationCode: code });
+            await queryRunner.commitTransaction();
+            responseMessage = 'confirmation code was sent';
+        }
+        catch (error) {
+            await queryRunner.rollbackTransaction();
+            responseMessage = 'error creating confirmation code';
+        }
+        finally {
+            await queryRunner.release();
+        }
+        return { message: responseMessage };
+    }
     async createConfirmationCode(loginUserDto, code) {
         const user = await this.checkUserCredentials(loginUserDto);
         const queryRunner = this.dataSource.createQueryRunner();
@@ -111,6 +130,29 @@ let AuthService = class AuthService {
         finally {
             await queryRunner.release();
         }
+    }
+    async restore(restoreDto) {
+        restoreDto.newPassword = await (0, bcrypt_1.hash)(restoreDto.newPassword, 10);
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        let responseMessage = '';
+        try {
+            const updatedUser = await queryRunner.manager.update(user_entity_1.UserEntity, { email: restoreDto.email, confirmationCode: restoreDto.confirmationCode }, { password: restoreDto.newPassword });
+            if (!updatedUser.affected) {
+                throw new Error();
+            }
+            await queryRunner.commitTransaction();
+            responseMessage = 'ok';
+        }
+        catch (error) {
+            await queryRunner.rollbackTransaction();
+            responseMessage = 'error during restoring';
+        }
+        finally {
+            await queryRunner.release();
+        }
+        return { message: responseMessage };
     }
     async logOut(req) {
         const queryRunner = this.dataSource.createQueryRunner();

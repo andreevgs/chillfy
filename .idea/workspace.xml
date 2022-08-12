@@ -1,42 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="rebuild app">
-      <change afterPath="$PROJECT_DIR$/src/account/dto/change-contact-request.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/account/dto/create-contact-request.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/account/entities/contact-request.entity.ts" afterDir="false" />
+    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="fix contacts functionality">
+      <change afterPath="$PROJECT_DIR$/src/auth/dto/confirm-email-for-restoring.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth/dto/restore.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/users/dto/edit-user.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/auth.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/auth.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/middlewares/confirmation.middleware.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/middlewares/confirmation.middleware.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/middlewares/confirmation.middleware.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/auth/auth.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.controller.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/auth/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/auth/auth.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.controller.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/auth/auth.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.service.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/auth/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/auth/auth.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/auth/dto/confirm-email.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/dto/confirm-email.dto.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/ormconfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ormconfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/ormconfig.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ormconfig.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/dto/update-user.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/dto/update-user.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/dto/update-user.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/entities/user.entity.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/entities/user.entity.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/entities/user.entity.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/entities/user.entity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/entities/user.entity.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/entities/user.entity.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/users/users.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.controller.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/users/users.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/users/users.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/users.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/users.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/users.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/users.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/users.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.service.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/auth.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/dto/confirm-email.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/dto/confirm-email.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ormconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ormconfig.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/users/entities/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/entities/user.entity.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/users.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/users.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/users.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +142,8 @@
       <workItem from="1659010866606" duration="9504000" />
       <workItem from="1659279931866" duration="10775000" />
       <workItem from="1659354374867" duration="6805000" />
-      <workItem from="1659448382151" duration="5758000" />
+      <workItem from="1659448382151" duration="6906000" />
+      <workItem from="1659701459604" duration="5598000" />
     </task>
     <task id="LOCAL-00001" summary="create auth and users modules">
       <created>1658866697301</created>
@@ -203,7 +194,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658878771174</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="create contacts functionality">
+      <created>1659470948536</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1659470948536</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix contacts functionality">
+      <created>1659471003004</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1659471003004</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,6 +233,8 @@
     <MESSAGE value="change ormconfig.ts" />
     <MESSAGE value="remove db seed from Procfile" />
     <MESSAGE value="rebuild app" />
-    <option name="LAST_COMMIT_MESSAGE" value="rebuild app" />
+    <MESSAGE value="create contacts functionality" />
+    <MESSAGE value="fix contacts functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix contacts functionality" />
   </component>
 </project>

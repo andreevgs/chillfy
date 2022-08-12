@@ -5,6 +5,8 @@ import { UsersService } from "../users/users.service";
 import { UserRequestInterface } from "../users/types/user-request.interface";
 import { ConfirmEmailDto } from "./dto/confirm-email.dto";
 import { EmailingService } from "../emailing/emailing.service";
+import { ConfirmEmailForRestoringDto } from "./dto/confirm-email-for-restoring.dto";
+import { RestoreDto } from "./dto/restore.dto";
 export declare class AuthController {
     private readonly authService;
     private readonly usersService;
@@ -16,6 +18,8 @@ export declare class AuthController {
     login(loginUserDto: LoginUserDto): Promise<import("./types/login-response.interface").LoginResponseInterface>;
     sendConfirmationCode(loginUserDto: LoginUserDto): Promise<import("../shared/types/message-response.interface").MessageResponseInterface>;
     confirmCode(confirmEmailDto: ConfirmEmailDto): Promise<import("../shared/types/message-response.interface").MessageResponseInterface>;
+    sendConfirmationCodeForRestoring(confirmEmailForRestoringDto: ConfirmEmailForRestoringDto): Promise<import("../shared/types/message-response.interface").MessageResponseInterface>;
+    restore(restoreDto: RestoreDto): Promise<import("../shared/types/message-response.interface").MessageResponseInterface>;
     getNewTokensPair(req: UserRequestInterface): Promise<import("./types/login-response.interface").LoginResponseInterface>;
     logOut(req: UserRequestInterface): Promise<import("../shared/types/message-response.interface").MessageResponseInterface>;
 }

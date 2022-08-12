@@ -21,6 +21,8 @@ const users_service_1 = require("../users/users.service");
 const refresh_token_guard_1 = require("./guards/refresh-token.guard");
 const confirm_email_dto_1 = require("./dto/confirm-email.dto");
 const emailing_service_1 = require("../emailing/emailing.service");
+const confirm_email_for_restoring_dto_1 = require("./dto/confirm-email-for-restoring.dto");
+const restore_dto_1 = require("./dto/restore.dto");
 let AuthController = class AuthController {
     constructor(authService, usersService, emailingService) {
         this.authService = authService;
@@ -63,6 +65,30 @@ let AuthController = class AuthController {
     async confirmCode(confirmEmailDto) {
         return await this.authService.confirmationCode(confirmEmailDto);
     }
+    async sendConfirmationCodeForRestoring(confirmEmailForRestoringDto) {
+        const code = this.usersService.generateConfirmationCode();
+        const createdConfirmationCodeResponse = await this.authService.createConfirmationCodeForRestoring(confirmEmailForRestoringDto, code);
+        try {
+            await this.emailingService.sendMail({
+                to: confirmEmailForRestoringDto.email,
+                subject: 'Confirmation code for password restoring',
+                text: code.toString()
+            });
+            return createdConfirmationCodeResponse;
+        }
+        catch (_a) {
+            return { message: 'could not send email' };
+        }
+    }
+    async restore(restoreDto) {
+        const restoredResponse = await this.authService.restore(restoreDto);
+        this.emailingService.sendMail({
+            to: restoreDto.email,
+            subject: 'Password was restored',
+            text: 'Your password was successfully changed'
+        });
+        return restoredResponse;
+    }
     async getNewTokensPair(req) {
         return await this.authService.getNewTokensPair(req);
     }
@@ -101,6 +127,22 @@ __decorate([
     __metadata("design:paramtypes", [confirm_email_dto_1.ConfirmEmailDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "confirmCode", null);
+__decorate([
+    (0, common_1.Post)('restore/code'),
+    (0, common_1.HttpCode)(200),
+    __param(0, (0, common_1.Body)('user')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [confirm_email_for_restoring_dto_1.ConfirmEmailForRestoringDto]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "sendConfirmationCodeForRestoring", null);
+__decorate([
+    (0, common_1.Post)('restore'),
+    (0, common_1.HttpCode)(200),
+    __param(0, (0, common_1.Body)('user')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [restore_dto_1.RestoreDto]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "restore", null);
 __decorate([
     (0, common_1.UseGuards)(refresh_token_guard_1.RefreshTokenGuard),
     (0, common_1.Get)('tokens'),

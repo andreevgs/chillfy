@@ -24,6 +24,9 @@ let UsersController = class UsersController {
         const user = this.usersService.findCurrent(req);
         return { user };
     }
+    editCurrent(req) {
+        return {};
+    }
     async findAll(req) {
         const users = await this.usersService.findAll(req);
         const filteredUsers = await this.usersService.findAllContacts(req, users);
@@ -42,6 +45,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findCurrent", null);
+__decorate([
+    (0, common_1.Patch)('current'),
+    (0, common_1.UseGuards)(access_token_guard_1.AccessTokenGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "editCurrent", null);
 __decorate([
     (0, common_1.UseGuards)(access_token_guard_1.AccessTokenGuard),
     (0, common_1.Get)(),

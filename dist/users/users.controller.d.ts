@@ -6,6 +6,7 @@ export declare class UsersController {
     findCurrent(req: UserRequestInterface): {
         user: import("./entities/user.entity").UserEntity;
     };
+    editCurrent(req: UserRequestInterface): {};
     findAll(req: UserRequestInterface): Promise<{
         users: import("./entities/user.entity").UserEntity[];
     }>;

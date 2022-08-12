@@ -8,6 +8,8 @@ import {RefreshTokenGuard} from "./guards/refresh-token.guard";
 import {ConfirmationGuard} from "./guards/confirmation.guard";
 import {ConfirmEmailDto} from "./dto/confirm-email.dto";
 import {EmailingService} from "../emailing/emailing.service";
+import {ConfirmEmailForRestoringDto} from "./dto/confirm-email-for-restoring.dto";
+import {RestoreDto} from "./dto/restore.dto";
 
 @Controller('auth')
 export class AuthController {
@@ -28,8 +30,7 @@ export class AuthController {
                 subject: 'Confirmation code',
                 text: code.toString()
             });
-        }
-        catch {
+        } catch {
             throw new HttpException('could not send email', HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return {user}
@@ -53,8 +54,7 @@ export class AuthController {
                 text: code.toString()
             });
             return createdConfirmationCodeResponse;
-        }
-        catch {
+        } catch {
             return {message: 'could not send email'};
         }
     }
@@ -63,6 +63,35 @@ export class AuthController {
     @HttpCode(200)
     async confirmCode(@Body('confirmation') confirmEmailDto: ConfirmEmailDto) {
         return await this.authService.confirmationCode(confirmEmailDto);
+    }
+
+    @Post('restore/code')
+    @HttpCode(200)
+    async sendConfirmationCodeForRestoring(@Body('user') confirmEmailForRestoringDto: ConfirmEmailForRestoringDto) {
+        const code = this.usersService.generateConfirmationCode();
+        const createdConfirmationCodeResponse = await this.authService.createConfirmationCodeForRestoring(confirmEmailForRestoringDto, code);
+        try {
+            await this.emailingService.sendMail({
+                to: confirmEmailForRestoringDto.email,
+                subject: 'Confirmation code for password restoring',
+                text: code.toString()
+            });
+            return createdConfirmationCodeResponse;
+        } catch {
+            return {message: 'could not send email'};
+        }
+    }
+
+    @Post('restore')
+    @HttpCode(200)
+    async restore(@Body('user') restoreDto: RestoreDto) {
+        const restoredResponse = await this.authService.restore(restoreDto);
+        this.emailingService.sendMail({
+            to: restoreDto.email,
+            subject: 'Password was restored',
+            text: 'Your password was successfully changed'
+        });
+        return restoredResponse;
     }
 
     @UseGuards(RefreshTokenGuard)

@@ -1,31 +1,38 @@
-import {Controller, Get, Param, Req, UseGuards} from '@nestjs/common';
+import {Controller, Get, Param, Patch, Req, UseGuards} from '@nestjs/common';
 import {UsersService} from './users.service';
 import {UserRequestInterface} from "./types/user-request.interface";
 import {AccessTokenGuard} from "../auth/guards/access-token.guard";
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+    constructor(private readonly usersService: UsersService) {
+    }
 
-  @Get('current')
-  @UseGuards(AccessTokenGuard)
-  findCurrent(@Req() req: UserRequestInterface) {
-    const user = this.usersService.findCurrent(req);
-    return {user};
-  }
+    @Get('current')
+    @UseGuards(AccessTokenGuard)
+    findCurrent(@Req() req: UserRequestInterface) {
+        const user = this.usersService.findCurrent(req);
+        return {user};
+    }
 
-  @UseGuards(AccessTokenGuard)
-  @Get()
-  async findAll(@Req() req: UserRequestInterface) {
-    const users = await this.usersService.findAll(req);
-    const filteredUsers = await this.usersService.findAllContacts(req, users);
-    return { users: filteredUsers };
-  }
+    @Patch('current')
+    @UseGuards(AccessTokenGuard)
+    editCurrent(@Req() req: UserRequestInterface,) {
+        return {}
+    }
 
-  @UseGuards(AccessTokenGuard)
-  @Get(':id')
-  async findOne(@Req() req: UserRequestInterface, @Param('id') id: string) {
-    const user = await this.usersService.findOne(+id);
-    return { user };
-  }
+    @UseGuards(AccessTokenGuard)
+    @Get()
+    async findAll(@Req() req: UserRequestInterface) {
+        const users = await this.usersService.findAll(req);
+        const filteredUsers = await this.usersService.findAllContacts(req, users);
+        return {users: filteredUsers};
+    }
+
+    @UseGuards(AccessTokenGuard)
+    @Get(':id')
+    async findOne(@Req() req: UserRequestInterface, @Param('id') id: string) {
+        const user = await this.usersService.findOne(+id);
+        return {user};
+    }
 }
