@@ -1,9 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="add password restoring">
+    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="fix ormconfig">
+      <change afterPath="$PROJECT_DIR$/src/account/dto/contacts-query.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/events/dto/create-invitation.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/events/dto/events-query.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/events/dto/update-invitation.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/events/entities/invitation.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/events/entities/status.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/events/enums/event-filter.enum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/events/enums/status.enum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/events/seeds/status.seed.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/dto/pagination-query.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/users/dto/users-query.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/account/account.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.controller.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/account/account.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/account/account.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.controller.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/account/account.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/account/account.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.module.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/account/account.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.service.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/account/account.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/account/account.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/shared/seeds/seeds.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/shared/seeds/seeds.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/shared/seeds/seeds.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/shared/seeds/seeds.module.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/users/entities/user.entity.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/entities/user.entity.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/users/entities/user.entity.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/entities/user.entity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/users/entities/user.entity.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/entities/user.entity.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/users/users.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.controller.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/users/users.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/users/users.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.controller.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/users/users.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.service.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/users/users.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/users/users.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.service.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/account.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/account.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/account.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/account.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/account/account.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/account.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ormconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ormconfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/seeds/seeds.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/seeds/seeds.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users/entities/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/entities/user.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/users.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/users.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +78,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/glebandreev/IdeaProjects/chillfy&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/glebandreev/IdeaProjects/chillfy/src/events/dto&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/glebandreev/IdeaProjects/chillfy/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -42,17 +86,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/events/dto" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/users/dto" />
       <recent name="$PROJECT_DIR$/src/auth" />
       <recent name="$PROJECT_DIR$/src/users" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/events/status" />
       <recent name="$PROJECT_DIR$/src/auth/dto" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.start:dev">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -85,8 +130,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.start:dev" />
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.db:seed" />
       </list>
     </recent_temporary>
@@ -121,7 +166,19 @@
       <workItem from="1659354374867" duration="6805000" />
       <workItem from="1659448382151" duration="6906000" />
       <workItem from="1659701459604" duration="5598000" />
-      <workItem from="1660315355164" duration="431000" />
+      <workItem from="1660315355164" duration="762000" />
+      <workItem from="1660568696852" duration="3988000" />
+      <workItem from="1660649341230" duration="8938000" />
+      <workItem from="1660739813632" duration="3273000" />
+      <workItem from="1660753386233" duration="1356000" />
+      <workItem from="1660755766518" duration="1273000" />
+      <workItem from="1660815853561" duration="16179000" />
+      <workItem from="1660930031160" duration="183000" />
+      <workItem from="1661165402095" duration="4232000" />
+      <workItem from="1661342554481" duration="1730000" />
+      <workItem from="1661347739510" duration="7749000" />
+      <workItem from="1661507326979" duration="9347000" />
+      <workItem from="1661776424591" duration="540000" />
     </task>
     <task id="LOCAL-00001" summary="create auth and users modules">
       <created>1658866697301</created>
@@ -193,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660315621120</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix ormconfig">
+      <created>1660315813190</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1660315813190</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +285,7 @@
     <MESSAGE value="create contacts functionality" />
     <MESSAGE value="fix contacts functionality" />
     <MESSAGE value="add password restoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="add password restoring" />
+    <MESSAGE value="fix ormconfig" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix ormconfig" />
   </component>
 </project>

@@ -6,13 +6,14 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {UserEntity} from "../../users/entities/user.entity";
 import {RoleEntity} from "../../users/entities/role.entity";
 import {RefreshTokenEntity} from "../../auth/entities/refresh-token.entity";
+import {StatusSeed} from "../../events/seeds/status.seed";
 
 @Module({
     imports: [
         CommandModule,
         TypeOrmModule.forFeature([UserEntity, RoleEntity, RefreshTokenEntity]),
     ],
-    providers: [RoleSeed, UserSeed],
-    exports: [RoleSeed, UserSeed],
+    providers: [RoleSeed, UserSeed, StatusSeed],
+    exports: [RoleSeed, UserSeed, StatusSeed],
 })
 export class SeedsModule {}

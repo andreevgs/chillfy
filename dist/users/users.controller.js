@@ -16,6 +16,7 @@ exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const access_token_guard_1 = require("../auth/guards/access-token.guard");
+const users_query_dto_1 = require("./dto/users-query.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -27,10 +28,12 @@ let UsersController = class UsersController {
     editCurrent(req) {
         return {};
     }
-    async findAll(req) {
-        const users = await this.usersService.findAll(req);
-        const filteredUsers = await this.usersService.findAllContacts(req, users);
-        return { users: filteredUsers };
+    async findAll(req, usersQueryDto) {
+        const { page, limit } = usersQueryDto;
+        const users = await this.usersService.findAll(req, usersQueryDto);
+        const total = await this.usersService.countAll(req);
+        const filteredUsers = users.length ? await this.usersService.findAllContacts(req, users) : [];
+        return { users: filteredUsers, page: page ? +page : 1, limit: limit ? +limit : 3, total };
     }
     async findOne(req, id) {
         const user = await this.usersService.findOne(+id);
@@ -57,8 +60,9 @@ __decorate([
     (0, common_1.UseGuards)(access_token_guard_1.AccessTokenGuard),
     (0, common_1.Get)(),
     __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, users_query_dto_1.UsersQueryDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findAll", null);
 __decorate([

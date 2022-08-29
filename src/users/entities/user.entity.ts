@@ -12,6 +12,7 @@ import {hash} from 'bcrypt';
 import {RoleEntity} from "./role.entity";
 import {RefreshTokenEntity} from "../../auth/entities/refresh-token.entity";
 import {ContactRequestEntity} from "../../account/entities/contact-request.entity";
+import {EventEntity} from "../../events/entities/event.entity";
 
 @Entity({name: 'users'})
 export class UserEntity {
@@ -69,6 +70,12 @@ export class UserEntity {
 
     @OneToMany(() => ContactRequestEntity, contactRequest => contactRequest.secondUser)
     contactRequestSecondUser: ContactRequestEntity[];
+
+    @OneToMany(() => EventEntity, event => event.creator)
+    events: EventEntity[];
+
+    @OneToMany(() => ContactRequestEntity, contactRequest => contactRequest.secondUser)
+    invitations: EventEntity[];
 
     @BeforeInsert()
     @BeforeUpdate()

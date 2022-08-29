@@ -20,6 +20,7 @@ const typeorm_2 = require("typeorm");
 const role_enum_1 = require("./enums/role.enum");
 const role_entity_1 = require("./entities/role.entity");
 const contact_request_entity_1 = require("../account/entities/contact-request.entity");
+const users_query_dto_1 = require("./dto/users-query.dto");
 let UsersService = class UsersService {
     constructor(dataSource, userRepository, contactRequestRepository, roleRepository) {
         this.dataSource = dataSource;
@@ -38,12 +39,29 @@ let UsersService = class UsersService {
         newUser.role = userRole;
         return await this.userRepository.save(newUser);
     }
-    async findAll(req) {
+    async findAll(req, usersQueryDto) {
+        let { page, limit } = usersQueryDto;
+        let filterParameters = Object.assign({}, usersQueryDto);
+        page ? delete filterParameters.page : page = 1;
+        limit ? delete filterParameters.limit : limit = 3;
+        for (let parameter in filterParameters) {
+            filterParameters[parameter] = (0, typeorm_2.Like)(`%${filterParameters[parameter]}%`);
+        }
         return await this.userRepository.find({
-            where: { id: (0, typeorm_2.Not)(req.user.id) },
+            where: Object.assign({ id: (0, typeorm_2.Not)(req.user.id) }, filterParameters),
             relations: [
                 'contactRequestFirstUser', 'contactRequestSecondUser'
-            ]
+            ],
+            order: {
+                id: 'ASC',
+            },
+            skip: (page - 1) * limit,
+            take: limit
+        });
+    }
+    async countAll(req) {
+        return await this.userRepository.count({
+            where: { id: (0, typeorm_2.Not)(req.user.id) },
         });
     }
     async findAllContacts(req, users) {
@@ -107,9 +125,15 @@ __decorate([
 __decorate([
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, users_query_dto_1.UsersQueryDto]),
     __metadata("design:returntype", Promise)
 ], UsersService.prototype, "findAll", null);
+__decorate([
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersService.prototype, "countAll", null);
 __decorate([
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),

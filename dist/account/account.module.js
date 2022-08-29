@@ -18,7 +18,8 @@ AccountModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([contact_request_entity_1.ContactRequestEntity])],
         controllers: [account_controller_1.AccountController],
-        providers: [account_service_1.AccountService]
+        providers: [account_service_1.AccountService],
+        exports: [account_service_1.AccountService]
     })
 ], AccountModule);
 exports.AccountModule = AccountModule;

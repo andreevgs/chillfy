@@ -7,6 +7,7 @@ import {ContactRequestEntity} from "./entities/contact-request.entity";
 @Module({
   imports: [TypeOrmModule.forFeature([ContactRequestEntity])],
   controllers: [AccountController],
-  providers: [AccountService]
+  providers: [AccountService],
+  exports: [AccountService]
 })
 export class AccountModule {}

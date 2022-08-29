@@ -1,0 +1,30 @@
+import { CreateEventDto } from './dto/create-event.dto';
+import { UpdateEventDto } from './dto/update-event.dto';
+import { EventEntity } from "./entities/event.entity";
+import { DataSource, Repository } from "typeorm";
+import { UserRequestInterface } from "../users/types/user-request.interface";
+import { CreateInvitationDto } from "./dto/create-invitation.dto";
+import { InvitationEntity } from "./entities/invitation.entity";
+import { UserEntity } from "../users/entities/user.entity";
+import { UpdateInvitationDto } from "./dto/update-invitation.dto";
+import { MessageResponseInterface } from "../shared/types/message-response.interface";
+import { ContactRequestEntity } from "../account/entities/contact-request.entity";
+export declare class EventsService {
+    private dataSource;
+    private readonly eventRepository;
+    private readonly usersRepository;
+    private readonly invitationRepository;
+    constructor(dataSource: DataSource, eventRepository: Repository<EventEntity>, usersRepository: Repository<UserEntity>, invitationRepository: Repository<InvitationEntity>);
+    createEvent(req: UserRequestInterface, createEventDto: CreateEventDto): Promise<EventEntity>;
+    updateEvent(eventId: number, updateEventDto: UpdateEventDto): Promise<EventEntity>;
+    findAllEvents(req: UserRequestInterface): Promise<EventEntity[]>;
+    findEvent(id: number): Promise<EventEntity>;
+    createInvitation(req: UserRequestInterface, createInvitationDto: CreateInvitationDto): Promise<InvitationEntity>;
+    findEventInvitations(req: UserRequestInterface, eventId: number): Promise<InvitationEntity[]>;
+    findInvitations(req: UserRequestInterface): Promise<InvitationEntity[]>;
+    findEventInvitation(req: UserRequestInterface, eventId: number, invitationId: number): Promise<InvitationEntity>;
+    updateEventInvitation(req: UserRequestInterface, eventId: number, invitationId: number, updateInvitationDto: UpdateInvitationDto): Promise<InvitationEntity>;
+    deleteEvent(req: UserRequestInterface, eventId: number): Promise<MessageResponseInterface>;
+    deleteEventInvitation(req: UserRequestInterface, eventId: number, invitationId: number): Promise<MessageResponseInterface>;
+    filterContactRequestsToGetUninvited(req: UserRequestInterface, contactRequests: ContactRequestEntity[], invitations: InvitationEntity[]): ContactRequestEntity[];
+}

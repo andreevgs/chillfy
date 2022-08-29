@@ -15,6 +15,7 @@ const bcrypt_1 = require("bcrypt");
 const role_entity_1 = require("./role.entity");
 const refresh_token_entity_1 = require("../../auth/entities/refresh-token.entity");
 const contact_request_entity_1 = require("../../account/entities/contact-request.entity");
+const event_entity_1 = require("../../events/entities/event.entity");
 let UserEntity = class UserEntity {
     async hashPassword() {
         this.password = await (0, bcrypt_1.hash)(this.password, 10);
@@ -91,6 +92,14 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => contact_request_entity_1.ContactRequestEntity, contactRequest => contactRequest.secondUser),
     __metadata("design:type", Array)
 ], UserEntity.prototype, "contactRequestSecondUser", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => event_entity_1.EventEntity, event => event.creator),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "events", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => contact_request_entity_1.ContactRequestEntity, contactRequest => contactRequest.secondUser),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "invitations", void 0);
 __decorate([
     (0, typeorm_1.BeforeInsert)(),
     (0, typeorm_1.BeforeUpdate)(),

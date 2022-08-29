@@ -1,9 +1,10 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req} from '@nestjs/common';
+import {Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, Query} from '@nestjs/common';
 import {AccountService} from './account.service';
 import {AccessTokenGuard} from "../auth/guards/access-token.guard";
 import {CreateContactRequestDto} from "./dto/create-contact-request.dto";
 import {UserRequestInterface} from "../users/types/user-request.interface";
 import {ChangeContactRequestDto} from "./dto/change-contact-request.dto";
+import {ContactsQueryDto} from "./dto/contacts-query.dto";
 
 @UseGuards(AccessTokenGuard)
 @Controller('account')
@@ -12,8 +13,8 @@ export class AccountController {
     }
 
     @Get('contacts')
-    async findContacts(@Req() req: UserRequestInterface) {
-        const contacts = await this.accountService.findContacts(req);
+    async findContacts(@Req() req: UserRequestInterface, @Query() contactsQueryDto: ContactsQueryDto) {
+        const contacts = await this.accountService.findContacts(req, contactsQueryDto);
         return {contacts};
     }
 

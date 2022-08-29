@@ -25,14 +25,18 @@ let AccountService = class AccountService {
         this.dataSource = dataSource;
         this.contactRequestRepository = contactRequestRepository;
     }
-    async findContacts(req) {
-        return await this.contactRequestRepository.find({
+    async findContacts(req, contactsQueryDto) {
+        for (let parameter in contactsQueryDto) {
+            contactsQueryDto[parameter] = (0, typeorm_1.Like)(`%${contactsQueryDto[parameter]}%`);
+        }
+        const contactRequests = await this.contactRequestRepository.find({
             where: [
-                { firstUser: { id: req.user.id } },
-                { secondUser: { id: req.user.id } }
+                { firstUser: { id: req.user.id }, secondUser: Object.assign({}, contactsQueryDto), status: true },
+                { secondUser: { id: req.user.id }, firstUser: Object.assign({}, contactsQueryDto), status: true }
             ],
             relations: ['firstUser', 'secondUser']
         });
+        return this.filterContactRequests(req, contactRequests);
     }
     async createContactRequest(req, createContactRequestDto) {
         let savedContactRequest;
@@ -134,13 +138,16 @@ let AccountService = class AccountService {
     async deleteFromContacts(req, userId) {
         return { message: '' };
     }
+    filterContactRequests(req, contactsRequests) {
+        return contactsRequests.map(contactsRequest => {
+            if (contactsRequest.firstUser.id === req.user.id)
+                contactsRequest.firstUser = null;
+            if (contactsRequest.secondUser.id === req.user.id)
+                contactsRequest.secondUser = null;
+            return contactsRequest;
+        });
+    }
 };
-__decorate([
-    __param(0, (0, common_1.Req)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], AccountService.prototype, "findContacts", null);
 __decorate([
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),

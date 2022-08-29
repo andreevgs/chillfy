@@ -18,12 +18,13 @@ const account_service_1 = require("./account.service");
 const access_token_guard_1 = require("../auth/guards/access-token.guard");
 const create_contact_request_dto_1 = require("./dto/create-contact-request.dto");
 const change_contact_request_dto_1 = require("./dto/change-contact-request.dto");
+const contacts_query_dto_1 = require("./dto/contacts-query.dto");
 let AccountController = class AccountController {
     constructor(accountService) {
         this.accountService = accountService;
     }
-    async findContacts(req) {
-        const contacts = await this.accountService.findContacts(req);
+    async findContacts(req, contactsQueryDto) {
+        const contacts = await this.accountService.findContacts(req, contactsQueryDto);
         return { contacts };
     }
     async createContactRequest(req, createContactRequestDto) {
@@ -44,8 +45,9 @@ let AccountController = class AccountController {
 __decorate([
     (0, common_1.Get)('contacts'),
     __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, contacts_query_dto_1.ContactsQueryDto]),
     __metadata("design:returntype", Promise)
 ], AccountController.prototype, "findContacts", null);
 __decorate([

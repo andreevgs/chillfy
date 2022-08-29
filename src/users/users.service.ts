@@ -2,11 +2,12 @@ import {Injectable, Req} from '@nestjs/common';
 import {CreateUserDto} from './dto/create-user.dto';
 import {UserEntity} from "./entities/user.entity";
 import {InjectRepository} from "@nestjs/typeorm";
-import {DataSource, Not, Repository} from "typeorm";
+import {DataSource, Like, Not, Repository} from "typeorm";
 import {UserRequestInterface} from "./types/user-request.interface";
 import RoleEnum from "./enums/role.enum";
 import {RoleEntity} from "./entities/role.entity";
 import {ContactRequestEntity} from "../account/entities/contact-request.entity";
+import {UsersQueryDto} from "./dto/users-query.dto";
 
 @Injectable()
 export class UsersService {
@@ -34,12 +35,31 @@ export class UsersService {
         return await this.userRepository.save(newUser);
     }
 
-    async findAll(@Req() req: UserRequestInterface): Promise<UserEntity[]> {
+    async findAll(@Req() req: UserRequestInterface, usersQueryDto: UsersQueryDto): Promise<UserEntity[]> {
+        let {page, limit} = usersQueryDto;
+        let filterParameters = Object.assign({}, usersQueryDto);
+        page ? delete filterParameters.page : page = 1;
+        limit ? delete filterParameters.limit : limit = 3;
+
+        for(let parameter in filterParameters){
+            filterParameters[parameter] = Like(`%${filterParameters[parameter]}%`);
+        }
         return await this.userRepository.find({
-            where: {id: Not(req.user.id)},
+            where: {id: Not(req.user.id), ...filterParameters},
             relations: [
                 'contactRequestFirstUser', 'contactRequestSecondUser'
-            ]
+            ],
+            order: {
+                id: 'ASC',
+            },
+            skip: (page - 1) * limit,
+            take: limit
+        });
+    }
+
+    async countAll(@Req() req: UserRequestInterface): Promise<number> {
+        return await this.userRepository.count({
+            where: {id: Not(req.user.id)},
         });
     }
 

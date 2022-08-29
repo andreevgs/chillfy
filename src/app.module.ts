@@ -10,6 +10,7 @@ import {SeedsModule} from "./shared/seeds/seeds.module";
 import {AuthMiddleware} from "./auth/middlewares/auth.middelware";
 import {EmailingModule} from './emailing/emailing.module';
 import {AccountModule} from './account/account.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
     imports: [
@@ -20,6 +21,7 @@ import {AccountModule} from './account/account.module';
         AuthModule,
         EmailingModule,
         AccountModule,
+        EventsModule,
     ],
     controllers: [AppController],
     providers: [AppService],

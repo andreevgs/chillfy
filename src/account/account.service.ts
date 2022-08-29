@@ -1,12 +1,13 @@
 import {Body, HttpException, HttpStatus, Injectable, Req} from '@nestjs/common';
 import {ContactRequestEntity} from "./entities/contact-request.entity";
 import {CreateContactRequestDto} from "./dto/create-contact-request.dto";
-import {DataSource, Repository, IsNull} from "typeorm";
+import {DataSource, Repository, IsNull, Like} from "typeorm";
 import {UserRequestInterface} from "../users/types/user-request.interface";
 import {UserEntity} from "../users/entities/user.entity";
 import {InjectRepository} from "@nestjs/typeorm";
 import {ChangeContactRequestDto} from "./dto/change-contact-request.dto";
 import {MessageResponseInterface} from "../shared/types/message-response.interface";
+import {ContactsQueryDto} from "./dto/contacts-query.dto";
 
 @Injectable()
 export class AccountService {
@@ -17,14 +18,21 @@ export class AccountService {
     ) {
     }
 
-    async findContacts(@Req() req: UserRequestInterface): Promise<ContactRequestEntity[]> {
-        return await this.contactRequestRepository.find({
+    async findContacts(
+        req: UserRequestInterface,
+        contactsQueryDto: ContactsQueryDto
+    ): Promise<ContactRequestEntity[]> {
+        for(let parameter in contactsQueryDto){
+            contactsQueryDto[parameter] = Like(`%${contactsQueryDto[parameter]}%`);
+        }
+        const contactRequests = await this.contactRequestRepository.find({
             where: [
-                {firstUser: {id: req.user.id}},
-                {secondUser: {id: req.user.id}}
+                {firstUser: {id: req.user.id}, secondUser: {...contactsQueryDto}, status: true},
+                {secondUser: {id: req.user.id}, firstUser: {...contactsQueryDto}, status: true}
             ],
             relations: ['firstUser', 'secondUser']
         });
+        return this.filterContactRequests(req, contactRequests);
     }
 
     async createContactRequest(
@@ -143,5 +151,13 @@ export class AccountService {
 
     async deleteFromContacts(@Req() req: UserRequestInterface, userId: number): Promise<MessageResponseInterface>{
         return {message: ''}
+    }
+
+    filterContactRequests(req: UserRequestInterface, contactsRequests: ContactRequestEntity[]) {
+        return contactsRequests.map(contactsRequest => {
+            if(contactsRequest.firstUser.id === req.user.id) contactsRequest.firstUser = null;
+            if(contactsRequest.secondUser.id === req.user.id) contactsRequest.secondUser = null;
+            return contactsRequest;
+        })
     }
 }
