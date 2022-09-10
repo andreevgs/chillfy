@@ -13,6 +13,6 @@ export declare class AccountService {
     createContactRequest(req: UserRequestInterface, createContactRequestDto: CreateContactRequestDto): Promise<ContactRequestEntity>;
     changeContactRequest(requestId: number, req: UserRequestInterface, changeContactRequestDto: ChangeContactRequestDto): Promise<ContactRequestEntity>;
     deleteContactRequest(requestId: number, req: UserRequestInterface): Promise<MessageResponseInterface>;
-    deleteFromContacts(req: UserRequestInterface, userId: number): Promise<MessageResponseInterface>;
+    deleteFromContacts(req: UserRequestInterface, requestId: number): Promise<MessageResponseInterface>;
     filterContactRequests(req: UserRequestInterface, contactsRequests: ContactRequestEntity[]): ContactRequestEntity[];
 }

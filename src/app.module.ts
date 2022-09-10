@@ -11,11 +11,15 @@ import {AuthMiddleware} from "./auth/middlewares/auth.middelware";
 import {EmailingModule} from './emailing/emailing.module';
 import {AccountModule} from './account/account.module';
 import { EventsModule } from './events/events.module';
+import {BullModule} from "@nestjs/bull";
+import redisconfig from "./redisconfig";
+import {EventsGateway} from "./events/gateways/events.gateway";
 
 @Module({
     imports: [
         ConfigModule.forRoot(),
         TypeOrmModule.forRoot(ormconfig),
+        BullModule.forRoot({redis: redisconfig}),
         SeedsModule,
         UsersModule,
         AuthModule,
@@ -24,7 +28,7 @@ import { EventsModule } from './events/events.module';
         EventsModule,
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [AppService, EventsGateway],
 })
 export class AppModule {
     configure(consumer: MiddlewareConsumer) {

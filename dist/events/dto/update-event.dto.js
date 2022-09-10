@@ -28,7 +28,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsDateString)(),
     __metadata("design:type", Date)
 ], UpdateEventDto.prototype, "date", void 0);
 exports.UpdateEventDto = UpdateEventDto;

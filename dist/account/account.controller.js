@@ -38,8 +38,8 @@ let AccountController = class AccountController {
     deleteContactRequest(req, requestId) {
         return this.accountService.deleteContactRequest(+requestId, req);
     }
-    deleteFromContacts(req, userId) {
-        return '';
+    deleteFromContacts(req, requestId) {
+        return this.accountService.deleteFromContacts(req, +requestId);
     }
 };
 __decorate([
@@ -76,9 +76,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AccountController.prototype, "deleteContactRequest", null);
 __decorate([
-    (0, common_1.Delete)('contacts/:userId'),
+    (0, common_1.Delete)('contacts/requests/active/:requestId'),
     __param(0, (0, common_1.Req)()),
-    __param(1, (0, common_1.Param)('userId')),
+    __param(1, (0, common_1.Param)('requestId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", void 0)

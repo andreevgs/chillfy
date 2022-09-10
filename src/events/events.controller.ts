@@ -8,11 +8,15 @@ import {CreateInvitationDto} from "./dto/create-invitation.dto";
 import {UpdateInvitationDto} from "./dto/update-invitation.dto";
 import {EmailingService} from "../emailing/emailing.service";
 import {AccountService} from "../account/account.service";
+import { InjectQueue } from '@nestjs/bull';
+import {Queue} from "bull";
+import {parse, stringify} from 'flatted';
 
 @UseGuards(AccessTokenGuard)
 @Controller('events')
 export class EventsController {
     constructor(
+        @InjectQueue('events') private eventsQueue: Queue,
         private readonly eventsService: EventsService,
         private readonly emailingService: EmailingService,
         private readonly accountService: AccountService,
@@ -25,6 +29,7 @@ export class EventsController {
         @Body("event") createEventDto: CreateEventDto
     ) {
         const event = await this.eventsService.createEvent(req, createEventDto);
+        await this.eventsQueue.add('delete', {req: {user: req.user, refreshToken: req.refreshToken}, eventId: event.id}, {delay: new Date(event.date).getTime() - new Date().getTime()});
         return {event};
     }
 
@@ -47,7 +52,7 @@ export class EventsController {
     }
 
     @Patch(':eventId')
-    async updateEvent(@Param('eventId') eventId: string, @Body() updateEventDto: UpdateEventDto) {
+    async updateEvent(@Param('eventId') eventId: string, @Body('event') updateEventDto: UpdateEventDto) {
         const event = await this.eventsService.updateEvent(+eventId, updateEventDto);
         return {event};
     }
@@ -70,7 +75,7 @@ export class EventsController {
             to: invitation.user.email,
             subject: 'New invitation to event',
             text:
-                `${invitation.user.firstName} ${invitation.user.lastName} invited 
+                `${invitation.event.creator.firstName} ${invitation.event.creator.lastName} invited 
                 you for ${invitation.event.name} at ${invitation.event.date}`
         });
         return {invitation};
@@ -113,12 +118,14 @@ export class EventsController {
         const emails = invitationsOfEvent.map(invitation => {
             return invitation.user.email
         });
-        this.emailingService.sendMail({
-            to: emails,
-            subject: 'Event was deleted',
-            text:
-                `${invitationsOfEvent[0].event.name} was deleted by creator :(`
-        });
+        if(invitationsOfEvent.length && emails.length){
+            this.emailingService.sendMail({
+                to: emails,
+                subject: 'Event was deleted',
+                text:
+                    `${invitationsOfEvent[0].event.name} was deleted by creator :(`
+            });
+        }
         return deletion;
     }
 

@@ -8,11 +8,19 @@ import {EmailingService} from "../emailing/emailing.service";
 import {UserEntity} from "../users/entities/user.entity";
 import {AccountService} from "../account/account.service";
 import {ContactRequestEntity} from "../account/entities/contact-request.entity";
+import {BullModule} from "@nestjs/bull";
+import {EventsProcessor} from "./processors/events.processor";
+import {EventsGateway} from "./gateways/events.gateway";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([EventEntity, InvitationEntity, UserEntity, ContactRequestEntity])],
+    imports: [
+        TypeOrmModule.forFeature([EventEntity, InvitationEntity, UserEntity, ContactRequestEntity]),
+        BullModule.registerQueue({
+            name: 'events'
+        })
+    ],
     controllers: [EventsController],
-    providers: [EventsService, EmailingService, AccountService]
+    providers: [EventsService, EmailingService, AccountService, EventsProcessor]
 })
 export class EventsModule {
 }

@@ -6,11 +6,13 @@ import { CreateInvitationDto } from "./dto/create-invitation.dto";
 import { UpdateInvitationDto } from "./dto/update-invitation.dto";
 import { EmailingService } from "../emailing/emailing.service";
 import { AccountService } from "../account/account.service";
+import { Queue } from "bull";
 export declare class EventsController {
+    private eventsQueue;
     private readonly eventsService;
     private readonly emailingService;
     private readonly accountService;
-    constructor(eventsService: EventsService, emailingService: EmailingService, accountService: AccountService);
+    constructor(eventsQueue: Queue, eventsService: EventsService, emailingService: EmailingService, accountService: AccountService);
     createEvent(req: UserRequestInterface, createEventDto: CreateEventDto): Promise<{
         event: import("./entities/event.entity").EventEntity;
     }>;

@@ -17,13 +17,20 @@ const emailing_service_1 = require("../emailing/emailing.service");
 const user_entity_1 = require("../users/entities/user.entity");
 const account_service_1 = require("../account/account.service");
 const contact_request_entity_1 = require("../account/entities/contact-request.entity");
+const bull_1 = require("@nestjs/bull");
+const events_processor_1 = require("./processors/events.processor");
 let EventsModule = class EventsModule {
 };
 EventsModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([event_entity_1.EventEntity, invitation_entity_1.InvitationEntity, user_entity_1.UserEntity, contact_request_entity_1.ContactRequestEntity])],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([event_entity_1.EventEntity, invitation_entity_1.InvitationEntity, user_entity_1.UserEntity, contact_request_entity_1.ContactRequestEntity]),
+            bull_1.BullModule.registerQueue({
+                name: 'events'
+            })
+        ],
         controllers: [events_controller_1.EventsController],
-        providers: [events_service_1.EventsService, emailing_service_1.EmailingService, account_service_1.AccountService]
+        providers: [events_service_1.EventsService, emailing_service_1.EmailingService, account_service_1.AccountService, events_processor_1.EventsProcessor]
     })
 ], EventsModule);
 exports.EventsModule = EventsModule;

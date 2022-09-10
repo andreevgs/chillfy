@@ -22,14 +22,17 @@ const create_invitation_dto_1 = require("./dto/create-invitation.dto");
 const update_invitation_dto_1 = require("./dto/update-invitation.dto");
 const emailing_service_1 = require("../emailing/emailing.service");
 const account_service_1 = require("../account/account.service");
+const bull_1 = require("@nestjs/bull");
 let EventsController = class EventsController {
-    constructor(eventsService, emailingService, accountService) {
+    constructor(eventsQueue, eventsService, emailingService, accountService) {
+        this.eventsQueue = eventsQueue;
         this.eventsService = eventsService;
         this.emailingService = emailingService;
         this.accountService = accountService;
     }
     async createEvent(req, createEventDto) {
         const event = await this.eventsService.createEvent(req, createEventDto);
+        await this.eventsQueue.add('delete', { req: { user: req.user, refreshToken: req.refreshToken }, eventId: event.id }, { delay: new Date(event.date).getTime() - new Date().getTime() });
         return { event };
     }
     async findAllEvents(req) {
@@ -59,7 +62,7 @@ let EventsController = class EventsController {
         this.emailingService.sendMail({
             to: invitation.user.email,
             subject: 'New invitation to event',
-            text: `${invitation.user.firstName} ${invitation.user.lastName} invited 
+            text: `${invitation.event.creator.firstName} ${invitation.event.creator.lastName} invited 
                 you for ${invitation.event.name} at ${invitation.event.date}`
         });
         return { invitation };
@@ -82,11 +85,13 @@ let EventsController = class EventsController {
         const emails = invitationsOfEvent.map(invitation => {
             return invitation.user.email;
         });
-        this.emailingService.sendMail({
-            to: emails,
-            subject: 'Event was deleted',
-            text: `${invitationsOfEvent[0].event.name} was deleted by creator :(`
-        });
+        if (invitationsOfEvent.length && emails.length) {
+            this.emailingService.sendMail({
+                to: emails,
+                subject: 'Event was deleted',
+                text: `${invitationsOfEvent[0].event.name} was deleted by creator :(`
+            });
+        }
         return deletion;
     }
     async deleteEventInvitation(eventId, invitationId, req) {
@@ -133,7 +138,7 @@ __decorate([
 __decorate([
     (0, common_1.Patch)(':eventId'),
     __param(0, (0, common_1.Param)('eventId')),
-    __param(1, (0, common_1.Body)()),
+    __param(1, (0, common_1.Body)('event')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_event_dto_1.UpdateEventDto]),
     __metadata("design:returntype", Promise)
@@ -201,7 +206,8 @@ __decorate([
 EventsController = __decorate([
     (0, common_1.UseGuards)(access_token_guard_1.AccessTokenGuard),
     (0, common_1.Controller)('events'),
-    __metadata("design:paramtypes", [events_service_1.EventsService,
+    __param(0, (0, bull_1.InjectQueue)('events')),
+    __metadata("design:paramtypes", [Object, events_service_1.EventsService,
         emailing_service_1.EmailingService,
         account_service_1.AccountService])
 ], EventsController);

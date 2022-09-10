@@ -96,11 +96,15 @@ let EventsService = class EventsService {
                 newInvitation.user = invitedUser;
                 newInvitation.event = event;
                 savedInvitation = await queryRunner.manager.save(newInvitation);
+                savedInvitation = await queryRunner.manager.findOne(invitation_entity_1.InvitationEntity, {
+                    where: { id: savedInvitation.id },
+                    relations: ['user', 'event.creator']
+                });
             }
             else {
                 savedInvitation = await queryRunner.manager.findOne(invitation_entity_1.InvitationEntity, {
                     where: { user: { id: createInvitationDto.userId }, event: { id: createInvitationDto.eventId } },
-                    relations: ['user', 'event']
+                    relations: ['user', 'event.creator']
                 });
             }
             await queryRunner.commitTransaction();
@@ -119,13 +123,13 @@ let EventsService = class EventsService {
                 { event: { id: eventId, creator: { id: req.user.id } } },
                 { event: { id: eventId }, user: { id: req.user.id } }
             ],
-            relations: ['event', 'user']
+            relations: ['event', 'user', 'status']
         });
     }
     async findInvitations(req) {
         return await this.invitationRepository.find({
             where: { user: { id: req.user.id } },
-            relations: ['event']
+            relations: ['event', 'status']
         });
     }
     async findEventInvitation(req, eventId, invitationId) {
@@ -177,6 +181,13 @@ let EventsService = class EventsService {
         await queryRunner.connect();
         await queryRunner.startTransaction();
         try {
+            const invitations = await queryRunner.manager.find(invitation_entity_1.InvitationEntity, {
+                where: { event: { id: eventId } }
+            });
+            const invitationsDeletionOptions = invitations.map(invitation => ({ id: invitation.id }));
+            if (invitationsDeletionOptions.length) {
+                await queryRunner.manager.softDelete(invitation_entity_1.InvitationEntity, invitationsDeletionOptions);
+            }
             await queryRunner.manager.softDelete(event_entity_1.EventEntity, { id: eventId });
             await queryRunner.commitTransaction();
             responseText = 'ok';

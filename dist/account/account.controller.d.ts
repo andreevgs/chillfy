@@ -16,5 +16,5 @@ export declare class AccountController {
         request: Promise<import("./entities/contact-request.entity").ContactRequestEntity>;
     }>;
     deleteContactRequest(req: UserRequestInterface, requestId: string): Promise<import("../shared/types/message-response.interface").MessageResponseInterface>;
-    deleteFromContacts(req: UserRequestInterface, userId: string): string;
+    deleteFromContacts(req: UserRequestInterface, requestId: string): Promise<import("../shared/types/message-response.interface").MessageResponseInterface>;
 }

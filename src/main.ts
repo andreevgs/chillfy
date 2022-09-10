@@ -9,5 +9,4 @@ async function bootstrap() {
   app.enableCors();
   await app.listen(process.env.PORT);
 }
-console.log(new Date());
 bootstrap();

@@ -42,9 +42,9 @@ export class AccountController {
         return this.accountService.deleteContactRequest(+requestId, req);
     }
 
-    @Delete('contacts/:userId')
-    deleteFromContacts(@Req() req: UserRequestInterface, @Param('userId') userId: string) {
-        return '';
+    @Delete('contacts/requests/active/:requestId')
+    deleteFromContacts(@Req() req: UserRequestInterface, @Param('requestId') requestId: string) {
+        return this.accountService.deleteFromContacts(req, +requestId);
     }
 
 }

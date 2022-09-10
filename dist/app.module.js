@@ -20,6 +20,9 @@ const auth_middelware_1 = require("./auth/middlewares/auth.middelware");
 const emailing_module_1 = require("./emailing/emailing.module");
 const account_module_1 = require("./account/account.module");
 const events_module_1 = require("./events/events.module");
+const bull_1 = require("@nestjs/bull");
+const redisconfig_1 = require("./redisconfig");
+const events_gateway_1 = require("./events/gateways/events.gateway");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(auth_middelware_1.AuthMiddleware).forRoutes({
@@ -33,6 +36,7 @@ AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot(),
             typeorm_1.TypeOrmModule.forRoot(ormconfig_1.default),
+            bull_1.BullModule.forRoot({ redis: redisconfig_1.default }),
             seeds_module_1.SeedsModule,
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
@@ -41,7 +45,7 @@ AppModule = __decorate([
             events_module_1.EventsModule,
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [app_service_1.AppService, events_gateway_1.EventsGateway],
     })
 ], AppModule);
 exports.AppModule = AppModule;
