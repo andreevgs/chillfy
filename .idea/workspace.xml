@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="add bullmq and websockets">
+    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="fix ormconfig.ts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ormconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ormconfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/events/events.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/events.controller.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +137,7 @@
       <workItem from="1661776424591" duration="540000" />
       <workItem from="1661784958198" duration="373000" />
       <workItem from="1661854098480" duration="21095000" />
-      <workItem from="1662114303488" duration="48150000" />
+      <workItem from="1662114303488" duration="48888000" />
     </task>
     <task id="LOCAL-00001" summary="create auth and users modules">
       <created>1658866697301</created>
@@ -223,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662848366129</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fix ormconfig.ts">
+      <created>1662849020514</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1662849020514</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +260,7 @@
     <MESSAGE value="add password restoring" />
     <MESSAGE value="fix ormconfig" />
     <MESSAGE value="add bullmq and websockets" />
-    <option name="LAST_COMMIT_MESSAGE" value="add bullmq and websockets" />
+    <MESSAGE value="fix ormconfig.ts" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix ormconfig.ts" />
   </component>
 </project>
