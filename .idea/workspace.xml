@@ -1,81 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="fix ormconfig">
-      <change afterPath="$PROJECT_DIR$/src/events/gateways/events.gateway.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/events/processors/events.processor.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redisconfig.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="add bullmq and websockets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/account/account.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.controller.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/account/account.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/account/account.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/account/account.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/account/account.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/account/account.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/account/account.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/account.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/account/dto/change-contact-request.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/dto/change-contact-request.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/account/dto/create-contact-request.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/dto/create-contact-request.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/account/entities/contact-request.entity.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/account/entities/contact-request.entity.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/auth.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/auth.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/auth.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/auth.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/dto/confirm-email-for-restoring.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/dto/confirm-email-for-restoring.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/dto/confirm-email.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/dto/confirm-email.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/dto/restore.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/dto/restore.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/entities/refresh-token.entity.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/entities/refresh-token.entity.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/guards/access-token.guard.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/guards/access-token.guard.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/guards/admin-role.guard.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/guards/admin-role.guard.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/guards/confirmation.guard.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/guards/confirmation.guard.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/guards/refresh-token.guard.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/guards/refresh-token.guard.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth/middlewares/auth.middelware.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth/middlewares/auth.middelware.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/emailing/emailing.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/emailing/emailing.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/emailing/emailing.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/emailing/emailing.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/dto/create-event.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/dto/create-event.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/dto/create-invitation.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/dto/create-invitation.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/dto/update-event.dto.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/dto/update-event.dto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/dto/update-event.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/dto/update-event.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/dto/update-invitation.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/dto/update-invitation.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/entities/event.entity.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/entities/event.entity.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/entities/invitation.entity.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/entities/invitation.entity.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/entities/status.entity.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/entities/status.entity.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/events.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/events.controller.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/events.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/events.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/events.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/events.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/events.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/events.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/events.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/events.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/events.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/events.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/events.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/events.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/events/seeds/status.seed.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/seeds/status.seed.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/shared/dto/pagination-query.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/shared/dto/pagination-query.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/shared/seeds/seeds.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/shared/seeds/seeds.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/dto/create-user.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/dto/create-user.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/dto/edit-user.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/dto/edit-user.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/dto/login-user.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/dto/login-user.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/entities/role.entity.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/entities/role.entity.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/entities/user.entity.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/entities/user.entity.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/seeds/role.seed.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/seeds/role.seed.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/seeds/user.seed.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/seeds/user.seed.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/users.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/users.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/users/users.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/users/users.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/account.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/account.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/account/account.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/account/account.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/events/dto/update-event.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/dto/update-event.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/events/events.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/events.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/events/events.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/events.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/events/events.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/events.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ormconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ormconfig.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +137,7 @@
       <workItem from="1661776424591" duration="540000" />
       <workItem from="1661784958198" duration="373000" />
       <workItem from="1661854098480" duration="21095000" />
-      <workItem from="1662114303488" duration="47051000" />
+      <workItem from="1662114303488" duration="48150000" />
     </task>
     <task id="LOCAL-00001" summary="create auth and users modules">
       <created>1658866697301</created>
@@ -288,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660315813190</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add bullmq and websockets">
+      <created>1662848366129</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1662848366129</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,6 +252,7 @@
     <MESSAGE value="fix contacts functionality" />
     <MESSAGE value="add password restoring" />
     <MESSAGE value="fix ormconfig" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix ormconfig" />
+    <MESSAGE value="add bullmq and websockets" />
+    <option name="LAST_COMMIT_MESSAGE" value="add bullmq and websockets" />
   </component>
 </project>
