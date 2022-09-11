@@ -12,6 +12,7 @@ export class EventsProcessor {
 
     @Process('delete')
     async deleteEvent(job: Job) {
+        console.log('deletion');
         await this.eventsService.deleteEvent(job.data.req, job.data.eventId);
     }
 }
