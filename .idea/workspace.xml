@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="fix ormconfig.ts">
+    <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="fix creation of event">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/events/events.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/events.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/events/events.controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/events/events.controller.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ormconfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ormconfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ormconfig.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/ormconfig.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/events/events.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/events.controller.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +142,7 @@
       <workItem from="1661776424591" duration="540000" />
       <workItem from="1661784958198" duration="373000" />
       <workItem from="1661854098480" duration="21095000" />
-      <workItem from="1662114303488" duration="48888000" />
+      <workItem from="1662114303488" duration="51016000" />
     </task>
     <task id="LOCAL-00001" summary="create auth and users modules">
       <created>1658866697301</created>
@@ -230,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662849020514</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix creation of event">
+      <created>1662850166620</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1662850166620</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,6 +273,7 @@
     <MESSAGE value="fix ormconfig" />
     <MESSAGE value="add bullmq and websockets" />
     <MESSAGE value="fix ormconfig.ts" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix ormconfig.ts" />
+    <MESSAGE value="fix creation of event" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix creation of event" />
   </component>
 </project>

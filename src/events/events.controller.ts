@@ -29,7 +29,7 @@ export class EventsController {
         @Body("event") createEventDto: CreateEventDto
     ) {
         const event = await this.eventsService.createEvent(req, createEventDto);
-        // await this.eventsQueue.add('delete', {req: {user: req.user, refreshToken: req.refreshToken}, eventId: event.id}, {delay: new Date(event.date).getTime() - new Date().getTime()});
+        this.eventsQueue.add('delete', {req: {user: req.user, refreshToken: req.refreshToken}, eventId: event.id}, {delay: new Date(event.date).getTime() - new Date().getTime()});
         return {event};
     }
 
