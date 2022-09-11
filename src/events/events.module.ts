@@ -15,7 +15,7 @@ import {EventsProcessor} from "./processors/events.processor";
     imports: [
         TypeOrmModule.forFeature([EventEntity, InvitationEntity, UserEntity, ContactRequestEntity]),
         BullModule.registerQueue({
-            name: 'events'
+            name: 'events',
         })
     ],
     controllers: [EventsController],
