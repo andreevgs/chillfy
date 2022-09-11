@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="462b4bd9-2cd1-4b2c-81f5-186381f020b1" name="Changes" comment="edit redisconfig.ts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/events/events.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/events.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redisconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redisconfig.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +137,7 @@
       <workItem from="1661776424591" duration="540000" />
       <workItem from="1661784958198" duration="373000" />
       <workItem from="1661854098480" duration="21095000" />
-      <workItem from="1662114303488" duration="56145000" />
+      <workItem from="1662114303488" duration="57220000" />
     </task>
     <task id="LOCAL-00001" summary="create auth and users modules">
       <created>1658866697301</created>
@@ -273,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662931039032</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="edit redisconfig.ts">
+      <created>1662932415234</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1662932415234</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
