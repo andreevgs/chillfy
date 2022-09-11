@@ -10,7 +10,6 @@ import {AccountService} from "../account/account.service";
 import {ContactRequestEntity} from "../account/entities/contact-request.entity";
 import {BullModule} from "@nestjs/bull";
 import {EventsProcessor} from "./processors/events.processor";
-import {EventsGateway} from "./gateways/events.gateway";
 
 @Module({
     imports: [
