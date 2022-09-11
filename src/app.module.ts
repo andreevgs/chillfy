@@ -14,12 +14,16 @@ import { EventsModule } from './events/events.module';
 import {BullModule} from "@nestjs/bull";
 import redisconfig from "./redisconfig";
 import {EventsGateway} from "./events/gateways/events.gateway";
-
+console.log('redisconfig', redisconfig);
 @Module({
     imports: [
         ConfigModule.forRoot(),
         TypeOrmModule.forRoot(ormconfig),
-        BullModule.forRoot({redis: redisconfig}),
+        BullModule.forRootAsync({
+            useFactory: () => ({
+                redis: redisconfig
+            }),
+        }),
         SeedsModule,
         UsersModule,
         AuthModule,
