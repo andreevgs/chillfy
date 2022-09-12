@@ -23,6 +23,7 @@ const events_module_1 = require("./events/events.module");
 const bull_1 = require("@nestjs/bull");
 const redisconfig_1 = require("./redisconfig");
 const events_gateway_1 = require("./events/gateways/events.gateway");
+console.log(redisconfig_1.default);
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(auth_middelware_1.AuthMiddleware).forRoutes({

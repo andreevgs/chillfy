@@ -17,6 +17,7 @@ let EventsProcessor = class EventsProcessor {
         this.eventsService = eventsService;
     }
     async deleteEvent(job) {
+        console.log('deletion');
         await this.eventsService.deleteEvent(job.data.req, job.data.eventId);
     }
 };

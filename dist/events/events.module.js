@@ -26,7 +26,7 @@ EventsModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forFeature([event_entity_1.EventEntity, invitation_entity_1.InvitationEntity, user_entity_1.UserEntity, contact_request_entity_1.ContactRequestEntity]),
             bull_1.BullModule.registerQueue({
-                name: 'events'
+                name: 'events',
             })
         ],
         controllers: [events_controller_1.EventsController],

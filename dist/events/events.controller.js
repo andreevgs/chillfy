@@ -32,6 +32,7 @@ let EventsController = class EventsController {
     }
     async createEvent(req, createEventDto) {
         const event = await this.eventsService.createEvent(req, createEventDto);
+        await this.eventsQueue.add('delete', { req: { user: req.user, refreshToken: req.refreshToken }, eventId: event.id }, { delay: new Date(event.date).getTime() - new Date().getTime() });
         return { event };
     }
     async findAllEvents(req) {
