@@ -65,6 +65,7 @@ let EventsController = class EventsController {
             text: `${invitation.event.creator.firstName} ${invitation.event.creator.lastName} invited 
                 you for ${invitation.event.name} at ${invitation.event.date}`
         });
+        await this.eventsQueue.add('remind', { invitation }, { delay: new Date(invitation.event.date).getTime() - new Date().getTime() });
         return { invitation };
     }
     async findEventInvitations(eventId, req) {
