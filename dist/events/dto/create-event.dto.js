@@ -29,5 +29,10 @@ __decorate([
     (0, class_validator_1.IsDateString)(),
     __metadata("design:type", Date)
 ], CreateEventDto.prototype, "date", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsArray)(),
+    __metadata("design:type", Array)
+], CreateEventDto.prototype, "invitations", void 0);
 exports.CreateEventDto = CreateEventDto;
 //# sourceMappingURL=create-event.dto.js.map

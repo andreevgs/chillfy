@@ -18,11 +18,11 @@ const create_event_dto_1 = require("./dto/create-event.dto");
 const event_entity_1 = require("./entities/event.entity");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-const create_invitation_dto_1 = require("./dto/create-invitation.dto");
 const invitation_entity_1 = require("./entities/invitation.entity");
 const user_entity_1 = require("../users/entities/user.entity");
 const update_invitation_dto_1 = require("./dto/update-invitation.dto");
 const status_entity_1 = require("./entities/status.entity");
+const create_invitations_dto_1 = require("./dto/create-invitations.dto");
 let EventsService = class EventsService {
     constructor(dataSource, eventRepository, usersRepository, invitationRepository) {
         this.dataSource = dataSource;
@@ -34,7 +34,15 @@ let EventsService = class EventsService {
         const newEvent = new event_entity_1.EventEntity();
         Object.assign(newEvent, createEventDto);
         newEvent.creator = req.user;
-        return await this.eventRepository.save(newEvent);
+        const createdEvent = await this.eventRepository.save(newEvent);
+        const invitations = createEventDto.invitations.map(invitation => ({
+            eventId: createdEvent.id,
+            userId: invitation.userId
+        }));
+        await this.createInvitations(req, {
+            invitations
+        });
+        return createdEvent;
     }
     async updateEvent(eventId, updateEventDto) {
         let event = await this.eventRepository.findOne({ where: { id: eventId } });
@@ -63,47 +71,55 @@ let EventsService = class EventsService {
     async findEvent(id) {
         return await this.eventRepository.findOne({ where: { id } });
     }
-    async createInvitation(req, createInvitationDto) {
-        let savedInvitation;
+    async createInvitations(req, createInvitationsDto) {
+        let savedInvitations;
         const event = await this.eventRepository.findOne({
-            where: { id: createInvitationDto.eventId, creator: { id: req.user.id } }
+            where: { id: createInvitationsDto.invitations[0].eventId, creator: { id: req.user.id } }
         });
         if (!event) {
             throw new common_1.HttpException('event is not exist', common_1.HttpStatus.NOT_FOUND);
         }
-        const existInvitation = await this.invitationRepository.findOne({
-            where: { user: { id: createInvitationDto.userId }, event: { id: createInvitationDto.eventId } }
+        const existInvitations = await this.invitationRepository.find({
+            where: {
+                user: createInvitationsDto.invitations.map(invitation => ({ id: invitation.userId })),
+                event: { id: createInvitationsDto.invitations[0].eventId }
+            }
         });
-        if (existInvitation) {
-            throw new common_1.HttpException('invitation is already exists', common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+        if (existInvitations.length) {
+            throw new common_1.HttpException(`invitation is already exists`, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
         }
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
         try {
-            const invitedUser = await queryRunner.manager.findOne(user_entity_1.UserEntity, {
-                where: {
-                    id: createInvitationDto.userId
-                }
+            const invitedUsers = await queryRunner.manager.find(user_entity_1.UserEntity, {
+                where: createInvitationsDto.invitations.map(invitation => ({ id: invitation.userId }))
             });
-            const invitationRestored = await queryRunner.manager.restore(invitation_entity_1.InvitationEntity, {
-                event: { id: createInvitationDto.eventId },
-                user: { id: createInvitationDto.userId },
-                status: (0, typeorm_1.IsNull)()
-            });
+            const invitationRestored = await queryRunner.manager.restore(invitation_entity_1.InvitationEntity, invitedUsers.map(invitedUser => ({
+                event: { id: createInvitationsDto.invitations[0].eventId },
+                status: (0, typeorm_1.IsNull)(),
+                user: { id: invitedUser.id }
+            })));
             if (!invitationRestored.affected) {
-                const newInvitation = new invitation_entity_1.InvitationEntity();
-                newInvitation.user = invitedUser;
-                newInvitation.event = event;
-                savedInvitation = await queryRunner.manager.save(newInvitation);
-                savedInvitation = await queryRunner.manager.findOne(invitation_entity_1.InvitationEntity, {
-                    where: { id: savedInvitation.id },
+                const newInvitations = new Array;
+                invitedUsers.forEach(invitedUser => {
+                    const newInvitation = new invitation_entity_1.InvitationEntity();
+                    newInvitation.event = event;
+                    newInvitation.user = invitedUser;
+                    newInvitations.push(newInvitation);
+                });
+                savedInvitations = await queryRunner.manager.save(newInvitations);
+                savedInvitations = await queryRunner.manager.findOne(invitation_entity_1.InvitationEntity, {
+                    where: savedInvitations.map(invitation => ({ id: invitation.id })),
                     relations: ['user', 'event.creator']
                 });
             }
             else {
-                savedInvitation = await queryRunner.manager.findOne(invitation_entity_1.InvitationEntity, {
-                    where: { user: { id: createInvitationDto.userId }, event: { id: createInvitationDto.eventId } },
+                savedInvitations = await queryRunner.manager.find(invitation_entity_1.InvitationEntity, {
+                    where: {
+                        user: createInvitationsDto.invitations.map(invitation => ({ id: invitation.userId })),
+                        event: { id: createInvitationsDto.invitations[0].eventId }
+                    },
                     relations: ['user', 'event.creator']
                 });
             }
@@ -115,7 +131,7 @@ let EventsService = class EventsService {
         finally {
             await queryRunner.release();
         }
-        return savedInvitation;
+        return savedInvitations;
     }
     async findEventInvitations(req, eventId) {
         return await this.invitationRepository.find({
@@ -253,9 +269,9 @@ __decorate([
 __decorate([
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, create_invitation_dto_1.CreateInvitationDto]),
+    __metadata("design:paramtypes", [Object, create_invitations_dto_1.CreateInvitationsDto]),
     __metadata("design:returntype", Promise)
-], EventsService.prototype, "createInvitation", null);
+], EventsService.prototype, "createInvitations", null);
 __decorate([
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),

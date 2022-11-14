@@ -4,13 +4,13 @@ import {CreateEventDto} from './dto/create-event.dto';
 import {UpdateEventDto} from './dto/update-event.dto';
 import {UserRequestInterface} from "../users/types/user-request.interface";
 import {AccessTokenGuard} from "../auth/guards/access-token.guard";
-import {CreateInvitationDto} from "./dto/create-invitation.dto";
 import {UpdateInvitationDto} from "./dto/update-invitation.dto";
 import {EmailingService} from "../emailing/emailing.service";
 import {AccountService} from "../account/account.service";
-import { InjectQueue } from '@nestjs/bull';
+import {InjectQueue} from '@nestjs/bull';
 import {Queue} from "bull";
 import {parse, stringify} from 'flatted';
+import {CreateInvitationsDto} from "./dto/create-invitations.dto";
 
 @UseGuards(AccessTokenGuard)
 @Controller('events')
@@ -29,7 +29,7 @@ export class EventsController {
         @Body("event") createEventDto: CreateEventDto
     ) {
         const event = await this.eventsService.createEvent(req, createEventDto);
-        await this.eventsQueue.add('delete', {req: {user: req.user, refreshToken: req.refreshToken}, eventId: event.id}, {delay: new Date(event.date).getTime() - new Date().getTime()},);
+        // await this.eventsQueue.add('delete', {req: {user: req.user, refreshToken: req.refreshToken}, eventId: event.id}, {delay: new Date(event.date).getTime() - new Date().getTime()},);
         return {event};
     }
 
@@ -66,24 +66,24 @@ export class EventsController {
     }
 
     @Post(':eventId/invitations')
-    async createInvitation(
+    async createInvitations(
         @Req() req: UserRequestInterface,
-        @Body("invitation") createInvitationDto: CreateInvitationDto
+        @Body() createInvitationsDto: CreateInvitationsDto
     ) {
-        const invitation = await this.eventsService.createInvitation(req, createInvitationDto);
-        this.emailingService.sendMail({
-            to: invitation.user.email,
-            subject: 'New invitation to event',
-            text:
-                `${invitation.event.creator.firstName} ${invitation.event.creator.lastName} invited 
-                you for ${invitation.event.name} at ${invitation.event.date}`
-        });
-        await this.eventsQueue.add(
-            'remind',
-            {invitation},
-            {delay: new Date(invitation.event.date).getTime() - new Date().getTime()}
-        );
-        return {invitation};
+        const invitations = await this.eventsService.createInvitations(req, createInvitationsDto);
+        // this.emailingService.sendMail({
+        //     to: invitations.map(invitation => invitation.user.email),
+        //     subject: 'New invitation to event',
+        //     text:
+        //         `${invitations[0].event.creator.firstName} ${invitations[0].event.creator.lastName} invited
+        //         you for ${invitations[0].event.name} at ${invitations[0].event.date}`
+        // });
+        // await this.eventsQueue.add(
+        //     'remind',
+        //     {invitations},
+        //     {delay: new Date(invitations[0].event.date).getTime() - new Date().getTime()}
+        // );
+        return {invitations};
     }
 
     @Get(':eventId/invitations')

@@ -1,4 +1,5 @@
-import {IsDateString, IsNotEmpty, IsOptional, IsString} from "class-validator";
+import {IsArray, IsDateString, IsNotEmpty, IsOptional, IsString} from "class-validator";
+import {CreateInvitationDto} from "./create-invitation.dto";
 
 export class CreateEventDto {
     @IsNotEmpty()
@@ -13,4 +14,8 @@ export class CreateEventDto {
     @IsNotEmpty()
     @IsDateString()
     date: Date;
+
+    @IsNotEmpty()
+    @IsArray()
+    invitations: CreateInvitationDto[]
 }
