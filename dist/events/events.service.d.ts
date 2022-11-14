@@ -3,12 +3,12 @@ import { UpdateEventDto } from './dto/update-event.dto';
 import { EventEntity } from "./entities/event.entity";
 import { DataSource, Repository } from "typeorm";
 import { UserRequestInterface } from "../users/types/user-request.interface";
-import { CreateInvitationDto } from "./dto/create-invitation.dto";
 import { InvitationEntity } from "./entities/invitation.entity";
 import { UserEntity } from "../users/entities/user.entity";
 import { UpdateInvitationDto } from "./dto/update-invitation.dto";
 import { MessageResponseInterface } from "../shared/types/message-response.interface";
 import { ContactRequestEntity } from "../account/entities/contact-request.entity";
+import { CreateInvitationsDto } from "./dto/create-invitations.dto";
 export declare class EventsService {
     private dataSource;
     private readonly eventRepository;
@@ -19,7 +19,7 @@ export declare class EventsService {
     updateEvent(eventId: number, updateEventDto: UpdateEventDto): Promise<EventEntity>;
     findAllEvents(req: UserRequestInterface): Promise<EventEntity[]>;
     findEvent(id: number): Promise<EventEntity>;
-    createInvitation(req: UserRequestInterface, createInvitationDto: CreateInvitationDto): Promise<InvitationEntity>;
+    createInvitations(req: UserRequestInterface, createInvitationsDto: CreateInvitationsDto): Promise<InvitationEntity[]>;
     findEventInvitations(req: UserRequestInterface, eventId: number): Promise<InvitationEntity[]>;
     findInvitations(req: UserRequestInterface): Promise<InvitationEntity[]>;
     findEventInvitation(req: UserRequestInterface, eventId: number, invitationId: number): Promise<InvitationEntity>;

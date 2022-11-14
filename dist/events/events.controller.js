@@ -18,11 +18,11 @@ const events_service_1 = require("./events.service");
 const create_event_dto_1 = require("./dto/create-event.dto");
 const update_event_dto_1 = require("./dto/update-event.dto");
 const access_token_guard_1 = require("../auth/guards/access-token.guard");
-const create_invitation_dto_1 = require("./dto/create-invitation.dto");
 const update_invitation_dto_1 = require("./dto/update-invitation.dto");
 const emailing_service_1 = require("../emailing/emailing.service");
 const account_service_1 = require("../account/account.service");
 const bull_1 = require("@nestjs/bull");
+const create_invitations_dto_1 = require("./dto/create-invitations.dto");
 let EventsController = class EventsController {
     constructor(eventsQueue, eventsService, emailingService, accountService) {
         this.eventsQueue = eventsQueue;
@@ -32,7 +32,6 @@ let EventsController = class EventsController {
     }
     async createEvent(req, createEventDto) {
         const event = await this.eventsService.createEvent(req, createEventDto);
-        await this.eventsQueue.add('delete', { req: { user: req.user, refreshToken: req.refreshToken }, eventId: event.id }, { delay: new Date(event.date).getTime() - new Date().getTime() });
         return { event };
     }
     async findAllEvents(req) {
@@ -57,16 +56,9 @@ let EventsController = class EventsController {
         const filteredContactRequests = this.eventsService.filterContactRequestsToGetUninvited(req, contactRequests, invitations);
         return { contacts: filteredContactRequests };
     }
-    async createInvitation(req, createInvitationDto) {
-        const invitation = await this.eventsService.createInvitation(req, createInvitationDto);
-        this.emailingService.sendMail({
-            to: invitation.user.email,
-            subject: 'New invitation to event',
-            text: `${invitation.event.creator.firstName} ${invitation.event.creator.lastName} invited 
-                you for ${invitation.event.name} at ${invitation.event.date}`
-        });
-        await this.eventsQueue.add('remind', { invitation }, { delay: new Date(invitation.event.date).getTime() - new Date().getTime() });
-        return { invitation };
+    async createInvitations(req, createInvitationsDto) {
+        const invitations = await this.eventsService.createInvitations(req, createInvitationsDto);
+        return { invitations };
     }
     async findEventInvitations(eventId, req) {
         const invitations = await this.eventsService.findEventInvitations(req, +eventId);
@@ -155,11 +147,11 @@ __decorate([
 __decorate([
     (0, common_1.Post)(':eventId/invitations'),
     __param(0, (0, common_1.Req)()),
-    __param(1, (0, common_1.Body)("invitation")),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, create_invitation_dto_1.CreateInvitationDto]),
+    __metadata("design:paramtypes", [Object, create_invitations_dto_1.CreateInvitationsDto]),
     __metadata("design:returntype", Promise)
-], EventsController.prototype, "createInvitation", null);
+], EventsController.prototype, "createInvitations", null);
 __decorate([
     (0, common_1.Get)(':eventId/invitations'),
     __param(0, (0, common_1.Param)('eventId')),

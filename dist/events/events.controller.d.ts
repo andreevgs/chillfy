@@ -2,11 +2,11 @@ import { EventsService } from './events.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { UserRequestInterface } from "../users/types/user-request.interface";
-import { CreateInvitationDto } from "./dto/create-invitation.dto";
 import { UpdateInvitationDto } from "./dto/update-invitation.dto";
 import { EmailingService } from "../emailing/emailing.service";
 import { AccountService } from "../account/account.service";
 import { Queue } from "bull";
+import { CreateInvitationsDto } from "./dto/create-invitations.dto";
 export declare class EventsController {
     private eventsQueue;
     private readonly eventsService;
@@ -31,8 +31,8 @@ export declare class EventsController {
     findUninvitedContacts(req: UserRequestInterface, eventId: string): Promise<{
         contacts: import("../account/entities/contact-request.entity").ContactRequestEntity[];
     }>;
-    createInvitation(req: UserRequestInterface, createInvitationDto: CreateInvitationDto): Promise<{
-        invitation: import("./entities/invitation.entity").InvitationEntity;
+    createInvitations(req: UserRequestInterface, createInvitationsDto: CreateInvitationsDto): Promise<{
+        invitations: import("./entities/invitation.entity").InvitationEntity[];
     }>;
     findEventInvitations(eventId: string, req: UserRequestInterface): Promise<{
         invitations: import("./entities/invitation.entity").InvitationEntity[];
