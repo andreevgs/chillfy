@@ -68,9 +68,10 @@ export class EventsController {
     @Post(':eventId/invitations')
     async createInvitations(
         @Req() req: UserRequestInterface,
+        @Param('eventId') eventId: number,
         @Body() createInvitationsDto: CreateInvitationsDto
     ) {
-        const invitations = await this.eventsService.createInvitations(req, createInvitationsDto);
+        const invitations = await this.eventsService.createInvitations(req, eventId, createInvitationsDto);
         // this.emailingService.sendMail({
         //     to: invitations.map(invitation => invitation.user.email),
         //     subject: 'New invitation to event',

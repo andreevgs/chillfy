@@ -31,7 +31,7 @@ export declare class EventsController {
     findUninvitedContacts(req: UserRequestInterface, eventId: string): Promise<{
         contacts: import("../account/entities/contact-request.entity").ContactRequestEntity[];
     }>;
-    createInvitations(req: UserRequestInterface, createInvitationsDto: CreateInvitationsDto): Promise<{
+    createInvitations(req: UserRequestInterface, eventId: number, createInvitationsDto: CreateInvitationsDto): Promise<{
         invitations: import("./entities/invitation.entity").InvitationEntity[];
     }>;
     findEventInvitations(eventId: string, req: UserRequestInterface): Promise<{

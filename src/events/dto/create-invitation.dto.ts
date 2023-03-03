@@ -4,8 +4,4 @@ export class CreateInvitationDto {
     @IsNotEmpty()
     @IsNumber()
     userId: number;
-
-    @IsNotEmpty()
-    @IsNumber()
-    eventId: number;
 }

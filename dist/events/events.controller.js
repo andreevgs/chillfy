@@ -56,8 +56,8 @@ let EventsController = class EventsController {
         const filteredContactRequests = this.eventsService.filterContactRequestsToGetUninvited(req, contactRequests, invitations);
         return { contacts: filteredContactRequests };
     }
-    async createInvitations(req, createInvitationsDto) {
-        const invitations = await this.eventsService.createInvitations(req, createInvitationsDto);
+    async createInvitations(req, eventId, createInvitationsDto) {
+        const invitations = await this.eventsService.createInvitations(req, eventId, createInvitationsDto);
         return { invitations };
     }
     async findEventInvitations(eventId, req) {
@@ -147,9 +147,10 @@ __decorate([
 __decorate([
     (0, common_1.Post)(':eventId/invitations'),
     __param(0, (0, common_1.Req)()),
-    __param(1, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('eventId')),
+    __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, create_invitations_dto_1.CreateInvitationsDto]),
+    __metadata("design:paramtypes", [Object, Number, create_invitations_dto_1.CreateInvitationsDto]),
     __metadata("design:returntype", Promise)
 ], EventsController.prototype, "createInvitations", null);
 __decorate([

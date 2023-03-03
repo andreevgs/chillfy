@@ -19,7 +19,7 @@ export declare class EventsService {
     updateEvent(eventId: number, updateEventDto: UpdateEventDto): Promise<EventEntity>;
     findAllEvents(req: UserRequestInterface): Promise<EventEntity[]>;
     findEvent(id: number): Promise<EventEntity>;
-    createInvitations(req: UserRequestInterface, createInvitationsDto: CreateInvitationsDto): Promise<InvitationEntity[]>;
+    createInvitations(req: UserRequestInterface, eventId: number, createInvitationsDto: CreateInvitationsDto): Promise<InvitationEntity[]>;
     findEventInvitations(req: UserRequestInterface, eventId: number): Promise<InvitationEntity[]>;
     findInvitations(req: UserRequestInterface): Promise<InvitationEntity[]>;
     findEventInvitation(req: UserRequestInterface, eventId: number, invitationId: number): Promise<InvitationEntity>;

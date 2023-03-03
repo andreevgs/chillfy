@@ -18,10 +18,5 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateInvitationDto.prototype, "userId", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], CreateInvitationDto.prototype, "eventId", void 0);
 exports.CreateInvitationDto = CreateInvitationDto;
 //# sourceMappingURL=create-invitation.dto.js.map

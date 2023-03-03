@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateEventDto = void 0;
 const class_validator_1 = require("class-validator");
+const create_invitation_dto_1 = require("./create-invitation.dto");
+const class_transformer_1 = require("class-transformer");
 class CreateEventDto {
 }
 __decorate([
@@ -32,6 +34,8 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => create_invitation_dto_1.CreateInvitationDto),
     __metadata("design:type", Array)
 ], CreateEventDto.prototype, "invitations", void 0);
 exports.CreateEventDto = CreateEventDto;

@@ -1,5 +1,6 @@
-import {IsArray, IsDateString, IsNotEmpty, IsOptional, IsString} from "class-validator";
+import {IsArray, IsDateString, IsNotEmpty, IsOptional, IsString, ValidateNested} from "class-validator";
 import {CreateInvitationDto} from "./create-invitation.dto";
+import {Type} from "class-transformer";
 
 export class CreateEventDto {
     @IsNotEmpty()
@@ -17,5 +18,7 @@ export class CreateEventDto {
 
     @IsNotEmpty()
     @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CreateInvitationDto)
     invitations: CreateInvitationDto[]
 }
